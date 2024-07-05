@@ -7,23 +7,23 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.bottomnavigationviewtest.ui.home.HomeFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.main.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_recruitboard"
-        android:name="com.example.bottomnavigationviewtest.ui.recruitboard.RecruitBoardFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.main.recruitboard.RecruitBoardFragment"
         android:label="@string/title_recruitboard"
         tools:layout="@layout/fragment_recruitboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.bottomnavigationviewtest.ui.notifications.NotificationsFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.main.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/navigation_matching"
-        android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.main.matching.MatchingFragment"
         android:label="matching" />
 </navigation>

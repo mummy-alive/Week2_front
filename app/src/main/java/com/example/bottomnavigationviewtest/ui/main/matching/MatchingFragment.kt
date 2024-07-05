@@ -1,4 +1,4 @@
-package com.example.bottomnavigationviewtest.ui.matching
+package com.example.bottomnavigationviewtest.ui.main.matching
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

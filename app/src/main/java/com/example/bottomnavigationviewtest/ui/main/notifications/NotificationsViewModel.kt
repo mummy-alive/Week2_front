@@ -1,13 +1,13 @@
-package com.example.bottomnavigationviewtest.ui.matching
+package com.example.bottomnavigationviewtest.ui.main.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class MatchingViewModel : ViewModel() {
+class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Hello blank fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 }

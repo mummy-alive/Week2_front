@@ -1,13 +1,13 @@
-package com.example.bottomnavigationviewtest.ui.recruitboard
+package com.example.bottomnavigationviewtest.ui.main.matching
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class RecruitBoardViewModel : ViewModel() {
+class MatchingViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "Hello blank fragment"
     }
     val text: LiveData<String> = _text
 }
