@@ -12,14 +12,18 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.bottomnavigationviewtest.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_recruitboard"
+        android:name="com.example.bottomnavigationviewtest.ui.recruitboard.RecruitBoardFragment"
+        android:label="@string/title_recruitboard"
+        tools:layout="@layout/fragment_recruitboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.bottomnavigationviewtest.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/navigation_matching"
+        android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
+        android:label="matching" />
 </navigation>
