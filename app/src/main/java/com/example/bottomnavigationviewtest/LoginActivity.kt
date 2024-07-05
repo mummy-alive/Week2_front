@@ -1,6 +1,8 @@
 package com.example.bottomnavigationviewtest
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -10,7 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.bottomnavigationviewtest.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    // private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,28 +21,25 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // toolbar
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_login)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .setAnchorView(R.id.fab).show()
+        // login function
+        binding.buttonLogin.setOnClickListener {
+            val userId = binding.editTextId!!.text.toString()
+            val password = binding.editTextPassword!!.text.toString()
+            if (userId == "" || password == "") Toast.makeText(
+                this@LoginActivity,
+                "회원정보를 전부 입력해주세요",
+                Toast.LENGTH_SHORT
+            ).show() else{
+                /* val checkUserpass
+                if(checkUserpass == true) : 로그인 성공
+                else : 로그인 실패
+                 */
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
 
-        // login function
-        binding
-
-
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_login)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
+
 }

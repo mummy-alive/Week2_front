@@ -1,3 +1,4 @@
+/*
 package com.example.bottomnavigationviewtest
 
 import android.os.Bundle
@@ -8,9 +9,11 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.bottomnavigationviewtest.databinding.FragmentMainBinding
 
+*/
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
- */
+ *//*
+
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
@@ -41,4 +44,4 @@ class MainFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
+}*/
