@@ -11,21 +11,21 @@
         android:layout_width="377dp"
         android:layout_height="202dp"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="222dp" />
+        tools:layout_editor_absoluteY="195dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recruit_post_list"
         android:layout_width="379dp"
         android:layout_height="284dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="445dp" />
+        tools:layout_editor_absoluteX="14dp"
+        tools:layout_editor_absoluteY="419dp" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="130dp"
         android:layout_height="130dp"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="62dp"
+        tools:layout_editor_absoluteY="39dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -34,5 +34,5 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         tools:layout_editor_absoluteX="167dp"
-        tools:layout_editor_absoluteY="65dp" />
+        tools:layout_editor_absoluteY="42dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
