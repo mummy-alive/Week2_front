@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/LoginFragment"
-        android:name="com.example.bottomnavigationviewtest.LoginFragment"
+        android:name="com.example.bottomnavigationviewtest.LoginActivity"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_login">
 
         <action
             android:id="@+id/action_LoginFragment_to_MainFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/MainFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/MainFragment"
         android:name="com.example.bottomnavigationviewtest.MainFragment"
         android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        tools:layout="@layout/fragment_main">
 
         <action
             android:id="@+id/action_MainFragment_to_LoginFragment"
