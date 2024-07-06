@@ -36,7 +36,31 @@ class RecruitPostFragment : Fragment() {
         // sampledata
         val jobPostings = listOf(
             RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
-            RecruitPost("UX Designer", "Design user experiences", "writer", "date")
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
+            RecruitPost("Data Scientist", "Analyze data", "writer", "date"),
+            RecruitPost("UX Designer", "Design user experiences", "writer", "date"),
         )/*
 
         val recruitPostViewModel =
