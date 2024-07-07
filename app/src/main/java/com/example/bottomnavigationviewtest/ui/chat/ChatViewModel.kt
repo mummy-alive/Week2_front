@@ -1,10 +1,10 @@
-package com.example.bottomnavigationviewtest.ui.notifications
+package com.example.bottomnavigationviewtest.ui.chat
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class ChatViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment"

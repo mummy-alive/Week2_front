@@ -2,24 +2,27 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.bottomnavigationviewtest.ui.home.HomeFragment"
-        android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.bottomnavigationviewtest.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
+        android:id="@+id/navigation_recruitpost"
+        android:name="com.example.bottomnavigationviewtest.ui.recruitboard.RecruitPostFragment"
+        tools:layout="@layout/fragment_recruitpost" />
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.bottomnavigationviewtest.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_matching"
+        android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
+        tools:layout="@layout/fragment_matching" />
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.example.bottomnavigationviewtest.ui.chat.ChatFragment"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.bottomnavigationviewtest.ui.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
