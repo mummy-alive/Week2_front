@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,11 +29,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" >까지 주석
+                <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
                 <data android:host="oauth"
-                    android:scheme="kakao${NATIVE_APP_KEY}" />-->
+                    android:scheme="kakao$00c4d79d62c937febca56680acdb32fd" />
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>
