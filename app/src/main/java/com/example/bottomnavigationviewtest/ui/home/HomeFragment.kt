@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.HomeMatchingAdapter
 import com.example.bottomnavigationviewtest.adapter.HomeRecruitAdapter
-import com.example.bottomnavigationviewtest.models.Profile
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class HomeFragment : Fragment() {
@@ -43,7 +42,7 @@ class HomeFragment : Fragment() {
         postRecyclerView.adapter = postAdapter*/
 
         // 구인글 컨테이너 설정
-        postContainer = view.findViewById(R.id.postContianer)
+        postContainer = view.findViewById(R.id.menuContianer)
 
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         postViewModel.allPosts.observe(viewLifecycleOwner, Observer { posts ->

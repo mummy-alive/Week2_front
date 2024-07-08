@@ -1,7 +1,9 @@
 package com.example.bottomnavigationviewtest.network
 
+import com.example.bottomnavigationviewtest.models.UserLikeResponse
 import com.example.bottomnavigationviewtest.models.Profile
 import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.UserBlockResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -9,6 +11,7 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 // GET/POST 메서드
 interface ApiService {
@@ -32,9 +35,32 @@ interface ApiService {
     fun editPost(@Path("id") id: Int, @Body post: RecruitPost) : Call<RecruitPost>
 
     // 수동매칭-프로필 가져오기
+    @GET("api/profile")
+    fun getProfiles() : Call<List<Profile>>
 
-    @GET("profiles")
-    suspend fun getProfiles(): List<Profile>
+    @GET("profile")
+    suspend fun _getProfiles(): List<Profile>
+
+    @GET("api/profile")
+    fun getProfileByEmail(@Query("email") email: String): Call<Profile>
+
+    // 좋아요
+    @GET("api/liked_profiles/{from_id}/")
+    fun getLikedProfiles(@Path("from_id") fromId: Int): Call<List<UserLikeResponse>>
+
+    @DELETE("api/likes/{like_id}/")
+    fun deleteLike(@Path("like_id") likeId: Int): Call<Void>
+
+    // 싫어요
+    @GET("api/liked_profiles/{from_id}/")
+    fun getBlockedProfiles(@Path("from_id") fromId: Int): Call<List<UserBlockResponse>>
+
+    @DELETE("api/likes/{like_id}/")
+    fun deleteBlock(@Path("like_id") likeId: Int): Call<Void>
+    // 스크랩/내 글도 똑같이 구현
+
+
+    // 차단목록 조회
 }
 
 data class TokenRequest(

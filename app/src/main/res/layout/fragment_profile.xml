@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageView"
@@ -35,23 +35,44 @@
 
         <TextView
             android:id="@+id/text_name"
-            android:layout_width="101dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="이름"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/text_class"
-            android:layout_width="101dp"
+            android:id="@+id/text_mbti"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:text="분반"
+            android:text="MBTI"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_name" />
+            app:layout_constraintTop_toBottomOf="@id/text_name" />
+
+        <TextView
+            android:id="@+id/text_is_recruit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
+            android:text="구직여부"
+            app:layout_constraintEnd_toStartOf="@id/text_tech"
+            app:layout_constraintTop_toBottomOf="@id/text_class" />
+
+        <TextView
+            android:id="@+id/text_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="분반"
+            app:layout_constraintEnd_toStartOf="@+id/text_tech"
+            app:layout_constraintTop_toBottomOf="@id/imageView" />
 
         <TextView
             android:id="@+id/text_email"
@@ -72,6 +93,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:text="이메일"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -108,18 +130,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:text="관심사"
+            android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/text_email_title" />
-
-        <TextView
-            android:id="@+id/textRecruit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="계정"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/home_matching_recycler" />
 
         <TextView
             android:id="@+id/textAutoMatching"
@@ -128,24 +141,65 @@
             android:layout_marginStart="20dp"
             android:layout_marginBottom="10dp"
             android:text="내 팀원"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/home_matching_recycler"
             app:layout_constraintStart_toStartOf="parent" />
 
         <LinearLayout
-            android:id="@+id/postContianer"
+            android:id="@+id/menuContianer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textRecruit"
-            app:layout_constraintVertical_bias="0.0"></LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/home_matching_recycler">
+
+            <TextView
+                android:id="@+id/text_menu_like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="좋아요"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_menu_block"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="같은 팀 되지 않기"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_menu_scrap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="내 스크랩"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_menu_my_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="내 구인글"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/text_menu_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="로그아웃"
+                android:textColor="#F44336"
+                android:textSize="20sp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

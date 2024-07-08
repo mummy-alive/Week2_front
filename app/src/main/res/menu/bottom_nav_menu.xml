@@ -11,13 +11,11 @@
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="구인게시판" />
 
-    <item
-        android:id="@+id/navigation_matching"
-        android:icon="@drawable/ic_notifications_black_24dp" />
+    <item android:id="@+id/navigation_matching" />
     <item
         android:id="@+id/navigation_chat"
         android:icon="@android:drawable/stat_notify_chat"
-        android:title="채팅" />
+        android:title="쪽지" />
     <item
         android:id="@+id/navigation_profile"
         android:icon="@android:drawable/ic_menu_myplaces"

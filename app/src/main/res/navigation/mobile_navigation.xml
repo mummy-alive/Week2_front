@@ -25,10 +25,43 @@
         android:id="@+id/navigation_chat"
         android:name="com.example.bottomnavigationviewtest.ui.chat.ChatFragment"
         tools:layout="@layout/fragment_chat" />
+
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.bottomnavigationviewtest.ui.profile.ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_likeFragment"
+            app:destination="@id/likeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_scrapFragment"
+            app:destination="@id/scrapFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myPostFragment"
+            app:destination="@id/myPostFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_blockFragment"
+            app:destination="@id/blockFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blockFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.profile.BlockFragment"
+        tools:layout="@layout/fragment_block" />
+
+    <fragment
+        android:id="@+id/likeFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.profile.LikeFragment"
+        tools:layout="@layout/fragment_like" />
+
+    <fragment
+        android:id="@+id/scrapFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.profile.ScrapFragment"
+        tools:layout="@layout/fragment_scrap" />
+    <fragment
+        android:id="@+id/myPostFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.profile.MyPostFragment"
+        tools:layout="@layout/fragment_my_post" />
 
     <fragment
         android:id="@+id/postUploadFragment"

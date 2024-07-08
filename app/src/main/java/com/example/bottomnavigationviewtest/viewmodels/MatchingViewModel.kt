@@ -16,7 +16,7 @@ class MatchingViewModel : ViewModel() {
     RetroInstance ~ : api요청 수행
     emit : liveData에 값을 보냄
      */
-
+/*
     private val _profiles = liveData(Dispatchers.IO) {
         val retrievedProfiles = RetrofitInstance.api.getProfiles()
         emit(retrievedProfiles)
@@ -28,7 +28,7 @@ class MatchingViewModel : ViewModel() {
     private val _filteredProfiles = MutableLiveData<List<Profile>>()
     val filteredProfiles: LiveData<List<Profile>> = _filteredProfiles
 
-    private val selectedTags = mutableListOf<String>()
+    private val selectedTags = mutableListOf<String>()*/
 
     // 테크태그 구현하고 난 뒤에
 /*    fun updateSelectedTags(tags: List<String>) {

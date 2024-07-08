@@ -27,6 +27,7 @@ class MatchingManualFragment : Fragment() {
         return binding.root
     }
 
+/*
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -38,6 +39,7 @@ class MatchingManualFragment : Fragment() {
             binding.profileRecyclerview.adapter = adapter
         })
     }
+*/
 
     override fun onDestroyView() {
         super.onDestroyView()
