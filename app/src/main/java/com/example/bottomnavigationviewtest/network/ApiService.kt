@@ -1,5 +1,6 @@
 package com.example.bottomnavigationviewtest.network
 
+import com.example.bottomnavigationviewtest.models.MatchingProfile
 import com.example.bottomnavigationviewtest.models.RecruitPost
 import retrofit2.Call
 import retrofit2.http.Body
@@ -29,6 +30,11 @@ interface ApiService {
     // 포스트 편집
     @PUT("api/posts/{id}")
     fun editPost(@Path("id") id: Int, @Body post: RecruitPost) : Call<RecruitPost>
+
+    // 수동매칭-프로필 가져오기
+
+    @GET("profiles")
+    suspend fun getProfiles(): List<MatchingProfile>
 }
 
 data class TokenRequest(

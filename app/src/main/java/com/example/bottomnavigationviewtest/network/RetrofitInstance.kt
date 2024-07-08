@@ -1,11 +1,21 @@
 package com.example.bottomnavigationviewtest.network
 
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     private const val BASE_URL = "http://52.89.152.109:8000/"
-    // 에뮬레이터 url, 실제 구현시엔 서버 url
+
+    private val loggingInterceptor = HttpLoggingInterceptor().apply {
+        level = HttpLoggingInterceptor.Level.BODY
+    }
+
+    private val httpClient = OkHttpClient.Builder()
+        .addInterceptor(loggingInterceptor)
+        .build()
+
 
     val api: ApiService by lazy {
         Retrofit.Builder()

@@ -3,11 +3,14 @@ package com.example.bottomnavigationviewtest.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.example.bottomnavigationviewtest.network.RetrofitInstance
+import kotlinx.coroutines.Dispatchers
 
 class MatchingViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Hello blank fragment"
+    val profiles = liveData(Dispatchers.IO) {
+        val retrievedProfiles = RetrofitInstance.api.getProfiles()
+        emit(retrievedProfiles)
     }
-    val text: LiveData<String> = _text
 }
