@@ -9,7 +9,7 @@ import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.databinding.ItemRecruitPostBinding
 import com.example.bottomnavigationviewtest.models.RecruitPost
 
-class RecruitPostAdapter(private val recruitPosts: List<RecruitPost>) :
+class RecruitPostAdapter(private var recruitPosts: List<RecruitPost>) :
     RecyclerView.Adapter<RecruitPostAdapter.RecruitPostViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecruitPostViewHolder {
@@ -23,12 +23,17 @@ class RecruitPostAdapter(private val recruitPosts: List<RecruitPost>) :
 
     override fun getItemCount(): Int = recruitPosts.size
 
+    fun updateData(newRecruitPosts: List<RecruitPost>) {
+        recruitPosts = newRecruitPosts
+        notifyDataSetChanged()
+    }
+
     class RecruitPostViewHolder(private val binding: ItemRecruitPostBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(recruitPost: RecruitPost) {
             binding.postTitle.text = recruitPost.title
             binding.postContent.text = recruitPost.content
-            binding.postWriter.text = recruitPost.writer
-            binding.postDate.text = recruitPost.date
+            binding.postWriter.text = recruitPost.writer.name
+            binding.postDate.text = recruitPost.createdDate
         }
     }
 }

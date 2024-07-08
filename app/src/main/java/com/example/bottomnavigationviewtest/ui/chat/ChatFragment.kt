@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.bottomnavigationviewtest.databinding.FragmentChatBinding
+import com.example.bottomnavigationviewtest.viewmodels.ChatViewModel
 
 class ChatFragment : Fragment() {
 
@@ -28,10 +29,6 @@ class ChatFragment : Fragment() {
         _binding = FragmentChatBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textChat
-        chatViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 

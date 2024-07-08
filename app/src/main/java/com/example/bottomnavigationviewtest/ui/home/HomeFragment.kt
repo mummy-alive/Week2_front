@@ -4,28 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.HomeMatchingAdapter
 import com.example.bottomnavigationviewtest.adapter.HomeRecruitAdapter
-import com.example.bottomnavigationviewtest.adapter.RecruitPostAdapter
 import com.example.bottomnavigationviewtest.models.MatchingProfile
-import com.example.bottomnavigationviewtest.models.RecruitPost
-import org.w3c.dom.Text
+import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class HomeFragment : Fragment() {
 
-    private lateinit var postRecyclerView: RecyclerView
     private lateinit var postAdapter: HomeRecruitAdapter
     private lateinit var postContainer: LinearLayout
     private lateinit var matchingRecyclerView: RecyclerView
     private lateinit var matchingAdapter: HomeMatchingAdapter
+    private lateinit var postViewModel: PostViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +37,6 @@ class HomeFragment : Fragment() {
         postRecyclerView = view.findViewById(R.id.recruit_post_recycler)
         postRecyclerView.layoutManager = LinearLayoutManager(context)*/
 
-        // 샘플 데이터 생성, db에서 최근 네 개만 뽑기
-        val jobPostings = listOf(
-            RecruitPost("Software Engineer", "Develop amazing apps", "Tech Company", "Seoul"),
-            RecruitPost("Product Manager", "Manage product lifecycle", "Startup", "Busan"),
-            RecruitPost("Software Engineer", "Develop amazing apps", "Tech Company", "Seoul"),
-            RecruitPost("Product Manager", "Manage product lifecycle", "Startup", "Busan"),
-        )
 /*
         // 적용
         postAdapter = RecruitPostAdapter(jobPostings)
@@ -52,9 +44,13 @@ class HomeFragment : Fragment() {
 
         // 구인글 컨테이너 설정
         postContainer = view.findViewById(R.id.postContianer)
-        // 적용
-        postAdapter = HomeRecruitAdapter(requireContext(), jobPostings)
-        postAdapter.addPostsToContainer(postContainer)
+
+        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
+        postViewModel.allPosts.observe(viewLifecycleOwner, Observer { posts ->
+            postAdapter = HomeRecruitAdapter(requireContext(), posts)
+            postAdapter.addPostsToContainer(postContainer)
+        })
+
         // 구인글 더보기 버튼 설정
         val btnMorePost: TextView = view.findViewById(R.id.btnMorePost)
         btnMorePost.setOnClickListener {

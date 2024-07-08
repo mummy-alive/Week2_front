@@ -92,6 +92,13 @@
             android:layout_marginBottom="20dp"
             android:background="#00FF0000"
             app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <ImageButton
+            android:id="@+id/button_kakao"
+            android:layout_width="266dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/kakao_login_medium_wide" />
     </FrameLayout>
 
 

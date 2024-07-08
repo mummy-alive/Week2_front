@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val kakaoToken = intent.getStringExtra("kakao_token")
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
