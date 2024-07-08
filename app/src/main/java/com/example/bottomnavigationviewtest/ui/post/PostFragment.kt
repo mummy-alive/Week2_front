@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.RecruitPostAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentPostBinding
+import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class PostFragment : Fragment() {
 
@@ -30,8 +33,9 @@ class PostFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_post, container, false)
-        recyclerView = view.findViewById(R.id.postRecycler)
+        _binding = FragmentPostBinding.inflate(inflater, container, false)
+        val view = binding.root
+        recyclerView = binding.postRecycler
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = RecruitPostAdapter(emptyList())
         recyclerView.adapter = adapter
@@ -46,6 +50,12 @@ class PostFragment : Fragment() {
         // 데이터 가져오기
         postViewModel.fetchPosts()
 
+        // 업로드페이지 이동
+        val uploadBtn: ImageButton = binding.uploadButton
+
+        uploadBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_postFragment_to_postUploadFragment)
+        }
 
         return view
     }

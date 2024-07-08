@@ -1,13 +1,13 @@
-package com.example.bottomnavigationviewtest.ui.home
+package com.example.bottomnavigationviewtest.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class HomeViewModel : ViewModel() {
+class ProfileViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+        value = "Hello blank fragment"
     }
     val text: LiveData<String> = _text
 }

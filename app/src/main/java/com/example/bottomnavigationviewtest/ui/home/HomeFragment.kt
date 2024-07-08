@@ -16,7 +16,7 @@ import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.HomeMatchingAdapter
 import com.example.bottomnavigationviewtest.adapter.HomeRecruitAdapter
 import com.example.bottomnavigationviewtest.models.MatchingProfile
-import com.example.bottomnavigationviewtest.ui.post.PostViewModel
+import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class HomeFragment : Fragment() {
 

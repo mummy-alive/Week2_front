@@ -12,7 +12,11 @@
     <fragment
         android:id="@+id/navigation_recruitpost"
         android:name="com.example.bottomnavigationviewtest.ui.post.PostFragment"
-        tools:layout="@layout/fragment_post" />
+        tools:layout="@layout/fragment_post" >
+        <action
+            android:id="@+id/action_postFragment_to_postUploadFragment"
+            app:destination="@id/postUploadFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_matching"
         android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
@@ -25,4 +29,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.bottomnavigationviewtest.ui.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/postUploadFragment"
+        android:name="com.example.bottomnavigationviewtest.ui.post.PostUploadFragment"
+        android:label="Post Upload"
+        tools:layout="@layout/fragment_post_upload" />
+
 </navigation>

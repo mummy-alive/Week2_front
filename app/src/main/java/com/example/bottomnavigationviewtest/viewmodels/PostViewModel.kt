@@ -1,4 +1,4 @@
-package com.example.bottomnavigationviewtest.ui.post
+package com.example.bottomnavigationviewtest.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

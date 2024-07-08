@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
+import com.example.bottomnavigationviewtest.viewmodels.MatchingViewModel
 
 class MatchingFragment : Fragment() {
 

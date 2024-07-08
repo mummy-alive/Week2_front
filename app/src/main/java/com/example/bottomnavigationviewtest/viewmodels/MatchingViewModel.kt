@@ -1,10 +1,10 @@
-package com.example.bottomnavigationviewtest.ui.matching
+package com.example.bottomnavigationviewtest.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProfileViewModel : ViewModel() {
+class MatchingViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "Hello blank fragment"
