@@ -32,8 +32,8 @@ class RecruitPostAdapter(private var recruitPosts: List<RecruitPost>) :
         fun bind(recruitPost: RecruitPost) {
             binding.postTitle.text = recruitPost.title
             binding.postContent.text = recruitPost.content
-            binding.postWriter.text = recruitPost.writer
-            binding.postDate.text = recruitPost.date
+            binding.postWriter.text = recruitPost.writer.name
+            binding.postDate.text = recruitPost.createdDate
         }
     }
 }
