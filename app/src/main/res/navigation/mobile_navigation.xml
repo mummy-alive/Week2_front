@@ -11,8 +11,8 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_recruitpost"
-        android:name="com.example.bottomnavigationviewtest.ui.recruitboard.RecruitPostFragment"
-        tools:layout="@layout/fragment_recruitpost" />
+        android:name="com.example.bottomnavigationviewtest.ui.post.PostFragment"
+        tools:layout="@layout/fragment_post" />
     <fragment
         android:id="@+id/navigation_matching"
         android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
