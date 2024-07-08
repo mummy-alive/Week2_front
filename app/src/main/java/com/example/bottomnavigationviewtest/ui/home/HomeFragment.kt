@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.HomeMatchingAdapter
 import com.example.bottomnavigationviewtest.adapter.HomeRecruitAdapter
-import com.example.bottomnavigationviewtest.models.MatchingProfile
+import com.example.bottomnavigationviewtest.models.Profile
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class HomeFragment : Fragment() {
@@ -64,12 +64,12 @@ class HomeFragment : Fragment() {
 
         // 샘플 데이터 생성
         val matchingSample = listOf(
-            MatchingProfile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            MatchingProfile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-            MatchingProfile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            MatchingProfile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-            MatchingProfile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            MatchingProfile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
+            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
+            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
+            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
+            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
+            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
+            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
         )
 
         // 적용

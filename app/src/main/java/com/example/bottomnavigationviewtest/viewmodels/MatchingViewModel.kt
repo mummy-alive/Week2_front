@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import com.example.bottomnavigationviewtest.models.MatchingProfile
+import com.example.bottomnavigationviewtest.models.Profile
 import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 
@@ -21,12 +21,12 @@ class MatchingViewModel : ViewModel() {
         val retrievedProfiles = RetrofitInstance.api.getProfiles()
         emit(retrievedProfiles)
     }
-    val profiles: LiveData<List<MatchingProfile>> = _profiles
+    val profiles: LiveData<List<Profile>> = _profiles
 
 
     // 필터
-    private val _filteredProfiles = MutableLiveData<List<MatchingProfile>>()
-    val filteredProfiles: LiveData<List<MatchingProfile>> = _filteredProfiles
+    private val _filteredProfiles = MutableLiveData<List<Profile>>()
+    val filteredProfiles: LiveData<List<Profile>> = _filteredProfiles
 
     private val selectedTags = mutableListOf<String>()
 

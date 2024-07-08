@@ -1,6 +1,6 @@
 package com.example.bottomnavigationviewtest.network
 
-import com.example.bottomnavigationviewtest.models.MatchingProfile
+import com.example.bottomnavigationviewtest.models.Profile
 import com.example.bottomnavigationviewtest.models.RecruitPost
 import retrofit2.Call
 import retrofit2.http.Body
@@ -34,7 +34,7 @@ interface ApiService {
     // 수동매칭-프로필 가져오기
 
     @GET("profiles")
-    suspend fun getProfiles(): List<MatchingProfile>
+    suspend fun getProfiles(): List<Profile>
 }
 
 data class TokenRequest(

@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bottomnavigationviewtest.databinding.FragmentPostUploadBinding
 import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.User
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 
@@ -58,8 +59,9 @@ class PostUploadFragment : Fragment() {
             val writer = writerText.text.toString()
             val content = contentText.text.toString()
             val date = dateText.text.toString()
+            val user : User = User(email = "", name = writer)
 
-            val newPost = RecruitPost(0, title, content, writer, date)  // ID는 서버에서 자동으로 설정됨
+            val newPost = RecruitPost(0, title, user, content, date)  // ID는 서버에서 자동으로 설정됨
             postViewModel.uploadPost(newPost)
         }
 

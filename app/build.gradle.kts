@@ -66,5 +66,4 @@ dependencies {
     // 백엔드 통신용
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
-    implementation (libs.logging.interceptor)
 }

@@ -16,8 +16,8 @@ class HomeRecruitAdapter(private val context: Context, private val recruitPosts:
             val postView = inflater.inflate(R.layout.item_recruit_post, container, false)
             postView.findViewById<TextView>(R.id.postTitle).text = post.title
             postView.findViewById<TextView>(R.id.postContent).text = post.content
-            postView.findViewById<TextView>(R.id.postDate).text = post.date
-            postView.findViewById<TextView>(R.id.postWriter).text = post.writer
+            postView.findViewById<TextView>(R.id.postDate).text = post.createdDate
+            postView.findViewById<TextView>(R.id.postWriter).text = post.writer.name
             container.addView(postView)
         }
     }
