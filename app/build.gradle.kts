@@ -53,6 +53,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation ("com.yuyakaido.android:card-stack-view:2.3.4") // 스와이프
 
     implementation (libs.v2.all) // 전체 모듈 설치, 2.11.0 버전부터 지원
     implementation (libs.v2.user) // 카카오 로그인 API 모듈

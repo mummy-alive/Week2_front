@@ -1,9 +1,11 @@
 package com.example.bottomnavigationviewtest.viewmodel
 
 import android.app.Application
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bottomnavigationviewtest.MainActivity
 import com.example.bottomnavigationviewtest.network.LoginResponse
 import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import com.example.bottomnavigationviewtest.network.TokenRequest
@@ -35,6 +37,17 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
             val loginResult = handleKakaoLogin()
             isLoggedIn.emit(loginResult.first)
             kakaoAccessToken.emit(loginResult.second)
+            if (loginResult.first && loginResult.second != null) {
+                sendTokenToBackend(loginResult.second!!) { success, message ->
+                    if (success) {
+                        // 토큰 전송 및 로그인 성공 시 MainActivity로 이동
+                        Log.i(TAG, "토큰 전송 및 로그인 성공: $message")
+                        navigateToMainActivity(loginResult.second!!)
+                    } else {
+                        Log.e(TAG, "토큰 전송 실패: $message")
+                    }
+                }
+            }
         }
     }
 
@@ -92,5 +105,13 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
                 onResult(false, "네트워크 오류: ${t.message}")
             }
         })
+    }
+
+    private fun navigateToMainActivity(token: String) {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            putExtra("kakao_token", token)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+        context.startActivity(intent)
     }
 }
