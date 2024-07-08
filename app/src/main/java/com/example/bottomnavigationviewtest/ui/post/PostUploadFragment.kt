@@ -31,7 +31,7 @@ class PostUploadFragment : Fragment() {
         val root: View = binding.root
 
         // ViewModel 설정
-        postViewModel = ViewModelProvider(this).get(postViewModel::class.java)
+        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
         val titleText: EditText = binding.titleEditText
         val writerText: TextView = binding.writerTextView
