@@ -9,9 +9,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.bottomnavigationviewtest.adapter.RecruitPostAdapter
 import com.example.bottomnavigationviewtest.databinding.ActivityMainBinding
+import com.example.bottomnavigationviewtest.models.RecruitPost
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import okhttp3.*
+import java.io.IOException
 
 class MainActivity : AppCompatActivity() {
 
