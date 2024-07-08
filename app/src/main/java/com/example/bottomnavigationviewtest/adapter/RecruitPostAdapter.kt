@@ -30,11 +30,6 @@ class RecruitPostAdapter(private var recruitPosts: List<RecruitPost>) :
 
     class RecruitPostViewHolder(private val binding: ItemRecruitPostBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(recruitPost: RecruitPost) {
-/*            val id: Int,
-            val title: String,
-            val content: String,
-            val writer: String,
-            val date: String*/
             binding.postTitle.text = recruitPost.title
             binding.postContent.text = recruitPost.content
             binding.postWriter.text = recruitPost.writer
