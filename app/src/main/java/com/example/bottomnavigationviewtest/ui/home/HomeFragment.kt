@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         matchingRecyclerView = view.findViewById(R.id.home_matching_recycler)
         matchingRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        // 샘플 데이터 생성
+/*        // 샘플 데이터 생성
         val matchingSample = listOf(
             Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
             Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
@@ -70,10 +70,10 @@ class HomeFragment : Fragment() {
             Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
             Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
             Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-        )
+        )*/
 
         // 적용
-        matchingAdapter = HomeMatchingAdapter(matchingSample)
+        matchingAdapter = HomeMatchingAdapter(emptyList())
         matchingRecyclerView.adapter = matchingAdapter
 
         matchingRecyclerView.setOnClickListener{

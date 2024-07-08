@@ -22,7 +22,7 @@ class HomeMatchingAdapter (private val profiles: List<Profile>) :
 
     class MatchingViewHolder(private val binding: ItemHomeMatchingBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(profile : Profile) {
-            binding.matchingName.text = profile.name
+            binding.matchingName.text = "" /* User(email = profile.email) -> name */
             binding.matchingMbti.text = profile.mbti
             binding.matchingInterest.text = profile.interest
             // tech

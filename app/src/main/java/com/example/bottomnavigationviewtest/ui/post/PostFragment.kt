@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.RecruitPostAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentPostBinding
+import com.example.bottomnavigationviewtest.decoration.DividerItemDecoration
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class PostFragment : Fragment() {
@@ -39,6 +40,10 @@ class PostFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = RecruitPostAdapter(emptyList())
         recyclerView.adapter = adapter
+
+        // DividerItemDecoration 추가
+        val itemDecoration = DividerItemDecoration(requireContext())
+        recyclerView.addItemDecoration(itemDecoration)
 
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
         postViewModel.allPosts.observe(viewLifecycleOwner, Observer { posts ->
