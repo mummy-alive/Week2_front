@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.bottomnavigationviewtest.databinding.FragmentChatBinding
+import com.example.bottomnavigationviewtest.viewmodels.ChatViewModel
 
 class ChatFragment : Fragment() {
 

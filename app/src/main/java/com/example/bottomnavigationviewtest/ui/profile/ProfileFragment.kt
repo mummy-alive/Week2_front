@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
-import com.example.bottomnavigationviewtest.R
-import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
 import com.example.bottomnavigationviewtest.databinding.FragmentProfileBinding
-import com.example.bottomnavigationviewtest.ui.matching.ProfileViewModel
+import com.example.bottomnavigationviewtest.viewmodels.ProfileViewModel
 
 class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
