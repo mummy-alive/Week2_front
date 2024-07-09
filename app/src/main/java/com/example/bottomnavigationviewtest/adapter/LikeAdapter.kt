@@ -13,7 +13,7 @@ class LikeAdapter(
 ) : RecyclerView.Adapter<LikeAdapter.LikeViewHolder>() {
 
     class LikeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val nameText: TextView = view.findViewById(R.id.name_text)
+        val nameText: TextView = view.findViewById(R.id.text_name)
         val trashIcon: ImageView = view.findViewById(R.id.imageTrash)
     }
 

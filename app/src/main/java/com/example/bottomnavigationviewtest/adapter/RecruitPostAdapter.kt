@@ -34,6 +34,20 @@ class RecruitPostAdapter(private var recruitPosts: List<RecruitPost>) :
             binding.postContent.text = recruitPost.content
             binding.postWriter.text = recruitPost.writer.name
             binding.postDate.text = recruitPost.createdDate
+
+/*            if(recruitPost in BlockList)
+                binding.imageHeartOn.visibility = View.VISIBLE
+            binding.imageHeartOff.visibility = View.INVISIBLE */
+
+            binding.imageHeartOff.setOnClickListener {
+                binding.imageHeartOff.visibility = View.VISIBLE
+                binding.imageHeartOn.visibility = View.INVISIBLE
+            }
+
+            binding.imageHeartOn.setOnClickListener {
+                binding.imageHeartOn.visibility = View.VISIBLE
+                binding.imageHeartOff.visibility = View.INVISIBLE
+            }
         }
     }
 }

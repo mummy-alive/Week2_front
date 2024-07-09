@@ -1,6 +1,10 @@
 package com.example.bottomnavigationviewtest.network
 
+import com.example.bottomnavigationviewtest.GlobalApplication
+import com.example.bottomnavigationviewtest.MyApplication
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +15,6 @@ object RetrofitInstance {
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
-
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor(loggingInterceptor)
         .build()

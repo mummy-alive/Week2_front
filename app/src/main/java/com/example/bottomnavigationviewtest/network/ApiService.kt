@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -44,12 +45,16 @@ interface ApiService {
     @GET("api/profile")
     fun getProfileByEmail(@Query("email") email: String): Call<Profile>
 
-    // 좋아요
-    @GET("api/liked_profiles/{from_id}/")
-    fun getLikedProfiles(@Path("from_id") fromId: Int): Call<List<UserLikeResponse>>
+    // api/myTab/likelist/
+    // api/myTab/blocklist/
+    // api/token/refresh
 
-    @DELETE("api/likes/{like_id}/")
-    fun deleteLike(@Path("like_id") likeId: Int): Call<Void>
+
+    @GET("api/likes/")
+    fun getLikedProfiles(@Header("Authorization") token: String): Call<List<UserLikeResponse>>
+
+    @GET("api/blocks/")
+    fun getBlockedProfiles(@Header("Authorization") token: String): Call<List<UserBlockResponse>>
 
     // 싫어요
     @GET("api/liked_profiles/{from_id}/")
@@ -67,6 +72,10 @@ data class TokenRequest(
     val token: String
 )
 
+data class LoginRequest(
+    val email: String,
+    val password: String
+)
 
 data class LoginResponse(
     val success: Boolean,

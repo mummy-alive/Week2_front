@@ -40,7 +40,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:text="이름"
-            android:textSize="12sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -61,6 +61,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             android:text="구직여부"
+            android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@id/text_tech"
             app:layout_constraintTop_toBottomOf="@id/text_class" />
 
@@ -71,6 +72,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:text="분반"
+            android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@+id/text_tech"
             app:layout_constraintTop_toBottomOf="@id/imageView" />
 

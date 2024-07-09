@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.CardStackAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
+import com.example.bottomnavigationviewtest.models.Profile
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.CardStackView
@@ -42,9 +43,7 @@ class MatchingFragment : Fragment() {
             override fun onCardDisappeared(view: View?, position: Int) {}
         })
 
-        val initList = mutableListOf<String>()
-        initList.add("a") // 테스트 용 더미데이터
-        initList.add("b") // 테스트 용 더미데이터
+        val initList = mutableListOf<Profile>()
 
         cardStackAdapter = CardStackAdapter(requireContext(), initList)
         binding.cardStackView.layoutManager = manager

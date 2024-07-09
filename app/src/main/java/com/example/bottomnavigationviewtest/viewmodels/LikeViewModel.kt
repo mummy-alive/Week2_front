@@ -1,9 +1,9 @@
+/*
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.bottomnavigationviewtest.models.UserLikeResponse
-import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -22,7 +22,7 @@ class LikeViewModel : ViewModel() {
         currentUserId = fromId
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val call = RetrofitInstance.api.getLikedProfiles(fromId)
+                val call = RetrofitInstance.apiService.getLikedProfiles(fromId)
                 call.enqueue(object : Callback<List<UserLikeResponse>> {
                     override fun onResponse(
                         call: Call<List<UserLikeResponse>>,
@@ -44,7 +44,7 @@ class LikeViewModel : ViewModel() {
     fun deleteLike(likeId: Int) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val call = RetrofitInstance.api.deleteLike(likeId)
+                val call = RetrofitInstance.apiService.deleteLike(likeId)
                 call.enqueue(object : Callback<Void> {
                     override fun onResponse(call: Call<Void>, response: Response<Void>) {
                         if (response.isSuccessful) {
@@ -61,3 +61,4 @@ class LikeViewModel : ViewModel() {
     }
 }
 
+*/

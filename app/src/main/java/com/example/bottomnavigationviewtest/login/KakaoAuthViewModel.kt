@@ -1,4 +1,4 @@
-package com.example.bottomnavigationviewtest.viewmodel
+package com.example.bottomnavigationviewtest.login
 
 import android.app.Application
 import android.content.Intent
@@ -55,10 +55,10 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
         suspendCoroutine { continuation ->
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
-                    Log.e(TAG, "카카오 계정으로 로그인 실패", error)
+                    Log.e(TAG, "카카오 계정으로 로그인 실패: ${error.message}", error)
                     continuation.resume(Pair(false, null))
                 } else if (token != null) {
-                    Log.i(TAG, "카카오 계정으로 로그인 성공 ${token.accessToken}")
+                    Log.i(TAG, "카카오 계정으로 로그인 성공: ${token.accessToken}")
                     continuation.resume(Pair(true, token.accessToken))
                 }
             }
@@ -66,7 +66,7 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
                 UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
                     if (error != null) {
-                        Log.e(TAG, "카카오톡으로 로그인 실패", error)
+                        Log.e(TAG, "카카오톡으로 로그인 실패: ${error.message}", error)
 
                         if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
                             continuation.resume(Pair(false, null))
@@ -75,7 +75,7 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
 
                         UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
                     } else if (token != null) {
-                        Log.i(TAG, "카카오톡으로 로그인 성공 ${token.accessToken}")
+                        Log.i(TAG, "카카오톡으로 로그인 성공: ${token.accessToken}")
                         continuation.resume(Pair(true, token.accessToken))
                     }
                 }
@@ -106,6 +106,7 @@ class KakaoAuthViewModel(application: Application) : AndroidViewModel(applicatio
             }
         })
     }
+
 
     private fun navigateToMainActivity(token: String) {
         val intent = Intent(context, MainActivity::class.java).apply {

@@ -1,4 +1,4 @@
-package com.example.bottomnavigationviewtest.ui.profile
+/*package com.example.bottomnavigationviewtest.ui.profile
 
 import LikeAdapter
 import LikeViewModel
@@ -51,4 +51,4 @@ class LikeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-}
+}*/

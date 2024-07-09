@@ -1,26 +1,16 @@
-package com.example.bottomnavigationviewtest
+package com.example.bottomnavigationviewtest.login
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.bottomnavigationviewtest.MainActivity
 import com.example.bottomnavigationviewtest.databinding.ActivityLoginBinding
-import com.example.bottomnavigationviewtest.network.RetrofitInstance
-import com.example.bottomnavigationviewtest.network.TokenRequest
-import com.example.bottomnavigationviewtest.viewmodel.KakaoAuthViewModel
 import com.kakao.sdk.common.util.Utility
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     // private lateinit var appBarConfiguration: AppBarConfiguration
@@ -70,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
                     kakaoAuthViewModel.kakaoAccessToken.value?.let { token ->
                         kakaoAuthViewModel.sendTokenToBackend(token) { success, message ->
                             if (success) {
+                                MyPreferences.saveToken(this@LoginActivity, token)
                                 Toast.makeText(this@LoginActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                 intent.putExtra("userId", message)
