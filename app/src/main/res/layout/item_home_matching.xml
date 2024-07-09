@@ -18,45 +18,46 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/matchingName"
-        android:layout_width="154dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="이름"
-        app:layout_constraintBottom_toTopOf="@+id/matchingMbti"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/matchingMbti"
-        android:layout_width="154dp"
-        android:layout_height="18dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
         android:gravity="center"
         android:text="MBTI"
-        app:layout_constraintBottom_toTopOf="@+id/matchingInterest"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchingImage" />
 
     <TextView
         android:id="@+id/matchingInterest"
         android:layout_width="154dp"
-        android:layout_height="18dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center"
+        android:gravity="left"
         android:text="관심사"
+        android:textSize="9sp"
         app:layout_constraintBottom_toTopOf="@+id/matchingTech"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/matchingMbti" />
 
     <TextView
         android:id="@+id/matchingTech"
         android:layout_width="154dp"
         android:layout_height="18dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal|left"
         android:text="기술스택"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

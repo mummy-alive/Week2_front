@@ -1,11 +1,12 @@
 package com.example.bottomnavigationviewtest.network
 
+import com.example.bottomnavigationviewtest.models.HomeDataResponse
 import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.models.UserLikeResponse
 import com.example.bottomnavigationviewtest.models.profile.ProfileResponse
-import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 import com.example.bottomnavigationviewtest.models.User
 import com.example.bottomnavigationviewtest.models.UserBlockResponse
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Response
@@ -40,7 +41,7 @@ interface ApiService {
 
     // 포스트 조회
     @GET("api/posts")
-    fun getPosts(): Call<List<RecruitPost>>
+    suspend fun getPosts(): Response<List<RecruitPost>>
 
     // 포스트 업로드
     @POST("api/posts")
@@ -50,8 +51,10 @@ interface ApiService {
     @GET("api/profilelist")
     fun getAutoMatchings() : Call<List<Profile>>
 
-
-
+    // 최근 네 개 포스트 조회하기
+    // api/main에서 (게시글 리스트/프로필 리스트)
+    @GET("api/main")
+    fun getHomeData(): Call<HomeDataResponse>
 
 
 

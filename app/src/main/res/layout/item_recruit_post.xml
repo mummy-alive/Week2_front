@@ -52,11 +52,22 @@
 
     <TextView
         android:id="@+id/postContent"
-        android:layout_width="200dp"
-        android:layout_height="31dp"
+        android:layout_width="291dp"
+        android:layout_height="21dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
-        android:text="내용 아래 주요태그 아이템 달기"
+        android:text="내용"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postTitle" />
+
+    <TextView
+        android:id="@+id/postTechTag"
+        android:layout_width="291dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:text="테크태그"
         android:textSize="10sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postTitle" />

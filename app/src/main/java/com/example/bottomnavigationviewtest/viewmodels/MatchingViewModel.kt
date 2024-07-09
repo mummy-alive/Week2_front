@@ -3,38 +3,27 @@ package com.example.bottomnavigationviewtest.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.bottomnavigationviewtest.network.RetrofitInstance
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.bottomnavigationviewtest.models.profile.Profile
+import com.example.bottomnavigationviewtest.repository.MatchingRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MatchingViewModel : ViewModel() {
+    private val _profiles = MutableLiveData<List<Profile>>()
+    val profiles: LiveData<List<Profile>> get() = _profiles
 
-    private val _autoProfiles = MutableLiveData<List<ProfileData>>()
-    val autoProfiles: LiveData<List<ProfileData>> get() = _autoProfiles
-
-    init {
-        fetchAutoProfiles()
-    }
-
-    fun fetchAutoProfiles() {
-        viewModelScope.launch(Dispatchers.IO) {
-            RetrofitInstance.api.getAutoMatchings().enqueue(object : Callback<List<ProfileData>> {
-                override fun onResponse(call: Call<List<ProfileData>>, response: Response<List<ProfileData>>) {
-                    if (response.isSuccessful) {
-                        _autoProfiles.postValue(response.body())
-                    } else {
-                    }
+    fun fetchProfiles() {
+        MatchingRepository.getAutoMatchings().enqueue(object : Callback<List<Profile>> {
+            override fun onResponse(call: Call<List<Profile>>, response: Response<List<Profile>>) {
+                if (response.isSuccessful) {
+                    _profiles.postValue(response.body())
                 }
+            }
 
-                override fun onFailure(call: Call<List<ProfileData>>, t: Throwable) {
-                    // Handle failure
-                }
-            })
-        }
+            override fun onFailure(call: Call<List<Profile>>, t: Throwable) {
+                // Handle failure
+            }
+        })
     }
 }
-

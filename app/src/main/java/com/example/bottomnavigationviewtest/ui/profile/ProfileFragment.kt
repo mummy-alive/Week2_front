@@ -15,13 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.databinding.FragmentProfileBinding
+import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.viewmodels.ProfileViewModel
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    private var profileViewModel: ProfileViewModel by viewModels()
+    private val profileViewModel: ProfileViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -40,6 +41,7 @@ class ProfileFragment : Fragment() {
                 bindProfileData(profile)
             } else {
                 Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            }
         })
 
         binding.textMenuScrap.setOnClickListener {
@@ -63,6 +65,19 @@ class ProfileFragment : Fragment() {
             // 로그아웃 로직을 여기에 추가합니다.
             Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
         }
+
+    }
+
+    private fun bindProfileData(profile: Profile) {
+        binding.textName.text = profile.email.name
+        binding.textEmail.text = profile.email.email
+        binding.textClass.text = profile.class_tag.toString()
+        binding.textMbti.text = profile.mbti
+        binding.textInterest.text = profile.interest
+        binding.textIsRecruit.text = if (profile.is_recruit) "구직 중" else "구직 안함"
+        binding.textTech.text = profile.tech_tags.joinToString(", ") { it.tech_tag_name }
+    }
+
 
 
 

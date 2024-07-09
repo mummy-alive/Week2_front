@@ -4,65 +4,45 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.bottomnavigationviewtest.R
-import com.example.bottomnavigationviewtest.adapter.RecruitPostAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentPostBinding
-import com.example.bottomnavigationviewtest.decoration.DividerItemDecoration
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class PostFragment : Fragment() {
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: RecruitPostAdapter
-
     private var _binding: FragmentPostBinding? = null
-    private lateinit var postViewModel: PostViewModel
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val postViewModel: PostViewModel by viewModels()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
-        val view = binding.root
-        recyclerView = binding.postRecycler
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = RecruitPostAdapter(emptyList())
-        recyclerView.adapter = adapter
+        return binding.root
+    }
 
-        // DividerItemDecoration 추가
-        val itemDecoration = DividerItemDecoration(requireContext())
-        recyclerView.addItemDecoration(itemDecoration)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
-        postViewModel.allPosts.observe(viewLifecycleOwner, Observer { posts ->
-            posts?.let {
-                adapter.updateData(it)
+        val adapter = PostAdapter(emptyList())
+        binding.postRecycler.layoutManager = LinearLayoutManager(requireContext())
+        binding.postRecycler.adapter = adapter
+
+        postViewModel.posts.observe(viewLifecycleOwner, Observer { posts ->
+            if (posts != null) {
+                adapter.updatePosts(posts)
+            } else {
+                Toast.makeText(requireContext(), "포스트를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         })
 
-        // 데이터 가져오기
-        postViewModel.fetchPosts()
-
-        // 업로드페이지 이동
-        val uploadBtn: ImageButton = binding.uploadButton
-
-        uploadBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_postFragment_to_postUploadFragment)
+        binding.uploadButton.setOnClickListener {
+            // 업로드 버튼 클릭 이벤트 처리
         }
-
-        return view
     }
 
     override fun onDestroyView() {

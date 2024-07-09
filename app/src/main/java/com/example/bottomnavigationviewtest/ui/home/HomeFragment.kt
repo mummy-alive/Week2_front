@@ -4,81 +4,89 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
-import com.example.bottomnavigationviewtest.adapter.HomeMatchingAdapter
-import com.example.bottomnavigationviewtest.adapter.HomeRecruitAdapter
-import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
+import com.example.bottomnavigationviewtest.databinding.FragmentHomeBinding
+import com.example.bottomnavigationviewtest.models.profile.Profile
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
+import com.example.bottomnavigationviewtest.viewmodels.HomeViewModel
+import com.example.bottomnavigationviewtest.ui.matching.CardAdapter
 
 class HomeFragment : Fragment() {
-
-    private lateinit var postAdapter: HomeRecruitAdapter
-    private lateinit var postContainer: LinearLayout
-    private lateinit var matchingRecyclerView: RecyclerView
-    private lateinit var matchingAdapter: HomeMatchingAdapter
-    private lateinit var postViewModel: PostViewModel
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var autoMatchingAdapter: CardAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-/*
-        // 구인글 리싸이클러뷰
-        // 리싸이클러뷰가 아니라 최신 5개만 뽑아옴 + 더보기 버튼
-        postRecyclerView = view.findViewById(R.id.recruit_post_recycler)
-        postRecyclerView.layoutManager = LinearLayoutManager(context)*/
+    ): View {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-/*
-        // 적용
-        postAdapter = RecruitPostAdapter(jobPostings)
-        postRecyclerView.adapter = postAdapter*/
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // 구인글 컨테이너 설정
-        postContainer = view.findViewById(R.id.menuContianer)
+        autoMatchingAdapter = CardAdapter(emptyList())
 
-        postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
-        postViewModel.allPosts.observe(viewLifecycleOwner, Observer { posts ->
-            postAdapter = HomeRecruitAdapter(requireContext(), posts)
-            postAdapter.addPostsToContainer(postContainer)
+        binding.homeMatchingRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.homeMatchingRecycler.adapter = autoMatchingAdapter
+
+        homeViewModel.homeData.observe(viewLifecycleOwner, Observer { homeData ->
+            if (homeData != null) {
+                bindProfileData(homeData.profiles.firstOrNull())
+                autoMatchingAdapter.updateProfiles(homeData.profiles)
+                bindRecentPosts(homeData.recentPosts.take(4))
+            } else {
+                Toast.makeText(requireContext(), "데이터를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            }
         })
 
-        // 구인글 더보기 버튼 설정
-        val btnMorePost: TextView = view.findViewById(R.id.btnMorePost)
-        btnMorePost.setOnClickListener {
-            val navController = findNavController()
-            navController.navigate(R.id.navigation_recruitpost)
+        homeViewModel.fetchHomeData()
+    }
+
+    private fun bindProfileData(profile: Profile?) {
+        if (profile != null) {
+            binding.textName.text = profile.email.name
+            binding.textEmail.text = profile.email.email
+            binding.textClass.text = profile.class_tag.toString()
+            binding.textMbti.text = profile.mbti
+            binding.textInterest.text = profile.interest
+            binding.textIsRecruit.text = if (profile.is_recruit) "구직 중" else "구직 안함"
+            binding.textTech.text = profile.tech_tags.joinToString(", ") { it.tech_tag_name }
         }
+    }
 
-        // 추천매칭 리싸이클러뷰
-        matchingRecyclerView = view.findViewById(R.id.home_matching_recycler)
-        matchingRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    private fun bindRecentPosts(posts: List<RecruitPost>) {
+        binding.menuContainer.removeAllViews()
+        posts.forEach { post ->
+            val postView = LayoutInflater.from(requireContext()).inflate(R.layout.item_recruit_post, binding.menuContainer, false)
+            val postTitleTextView = postView.findViewById<TextView>(R.id.postTitle)
+            val postContentTextView = postView.findViewById<TextView>(R.id.postContent)
+            val postWriterTextView = postView.findViewById<TextView>(R.id.postWriter)
+            val postDateTextView = postView.findViewById<TextView>(R.id.postDate)
+            val postTechTagTextView = postView.findViewById<TextView>(R.id.postTechTag)
 
-/*        // 샘플 데이터 생성
-        val matchingSample = listOf(
-            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-            Profile(name = "Alice", mbti = "INFJ", img_url = -1, interest = "Reading, Traveling"),
-            Profile(name = "Bob", mbti = "ENFP", img_url = -1, interest = "Cooking, Hiking"),
-        )*/
+            postTitleTextView.text = post.title
+            postContentTextView.text = post.content
+            postWriterTextView.text = post.writer.username
+            postDateTextView.text = post.created_at
+            postTechTagTextView.text = post.tech_tags.joinToString(", ") { it.tech_tag_name }
 
-        // 적용
-        matchingAdapter = HomeMatchingAdapter(emptyList())
-        matchingRecyclerView.adapter = matchingAdapter
-
-        matchingRecyclerView.setOnClickListener{
-            // 매칭카드 스와이프
+            binding.menuContainer.addView(postView)
         }
+    }
 
-        return view
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
+
