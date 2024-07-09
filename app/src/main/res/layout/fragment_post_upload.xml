@@ -34,32 +34,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content_edit_text" />
 
-    <TextView
-        android:id="@+id/writer_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:gravity="right"
-        android:text="writer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_edit_text" />
-
     <EditText
         android:id="@+id/content_edit_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:hint="Description"
         app:layout_constraintBottom_toTopOf="@id/date_text_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writer_text_view" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/date_text_view"
@@ -90,12 +75,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/content_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/writer_text_view" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

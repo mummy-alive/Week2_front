@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.bottomnavigationviewtest.R
-import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 
 class HomeRecruitAdapter(private val context: Context, private val recruitPosts: List<RecruitPost>){
 
@@ -17,7 +17,7 @@ class HomeRecruitAdapter(private val context: Context, private val recruitPosts:
             postView.findViewById<TextView>(R.id.postTitle).text = post.title
             postView.findViewById<TextView>(R.id.postContent).text = post.content
             postView.findViewById<TextView>(R.id.postDate).text = post.createdDate
-            postView.findViewById<TextView>(R.id.postWriter).text = post.writer.name
+            postView.findViewById<TextView>(R.id.postWriter).text = post.writer
             container.addView(postView)
         }
     }

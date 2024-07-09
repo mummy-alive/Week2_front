@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.RecyclerListener
-import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.databinding.ItemRecruitPostBinding
-import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 
 class RecruitPostAdapter(private var recruitPosts: List<RecruitPost>) :
     RecyclerView.Adapter<RecruitPostAdapter.RecruitPostViewHolder>(){

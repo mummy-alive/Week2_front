@@ -9,7 +9,7 @@ import com.example.bottomnavigationviewtest.models.UserLikeResponse
 
 class LikeAdapter(
     private val likes: List<UserLikeResponse>,
-    private val onDeleteClick: (Int) -> Unit
+    private val onDeleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<LikeAdapter.LikeViewHolder>() {
 
     class LikeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,10 +25,10 @@ class LikeAdapter(
 
     override fun onBindViewHolder(holder: LikeViewHolder, position: Int) {
         val profile = likes[position].to_id
-        holder.nameText.text = profile.name
+        holder.nameText.text = profile
 
         holder.trashIcon.setOnClickListener {
-            onDeleteClick(likes[position].id)
+            onDeleteClick(likes[position].to_id)
         }
     }
 

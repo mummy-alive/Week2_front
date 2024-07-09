@@ -1,3 +1,4 @@
+/*
 package com.example.bottomnavigationviewtest.ui.profile
 
 import BlockViewModel
@@ -52,3 +53,4 @@ class BlockFragment : Fragment() {
         _binding = null
     }
 }
+*/

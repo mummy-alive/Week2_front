@@ -11,7 +11,7 @@ import com.example.bottomnavigationviewtest.models.UserBlockResponse
 
 class BlockAdapter (
     private val likes: List<UserBlockResponse>,
-    private val onDeleteClick: (Int) -> Unit
+    private val onDeleteClick: (String) -> Unit
 ) : RecyclerView.Adapter<BlockAdapter.BlockViewHolder>() {
 
     class BlockViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -27,10 +27,10 @@ class BlockAdapter (
 
     override fun onBindViewHolder(holder: BlockViewHolder, position: Int) {
         val profile = likes[position].to_id
-        holder.nameText.text = profile.name
+        holder.nameText.text = profile
 
         holder.trashIcon.setOnClickListener {
-            onDeleteClick(likes[position].id)
+            onDeleteClick(likes[position].to_id)
         }
     }
 

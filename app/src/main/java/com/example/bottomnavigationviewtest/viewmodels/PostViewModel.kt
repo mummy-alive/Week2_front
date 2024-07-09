@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

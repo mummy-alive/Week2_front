@@ -1,10 +1,14 @@
 package com.example.bottomnavigationviewtest.network
 
+import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.models.UserLikeResponse
-import com.example.bottomnavigationviewtest.models.Profile
-import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.profile.ProfileResponse
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
+import com.example.bottomnavigationviewtest.models.User
 import com.example.bottomnavigationviewtest.models.UserBlockResponse
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -17,8 +21,22 @@ import retrofit2.http.Query
 // GET/POST 메서드
 interface ApiService {
     // 카카오 로그인 : 로그인 정보를 넘김
-    @POST("auth/kakao/login/")
-    fun sendKakaoToken(@Body token: TokenRequest): Call<LoginResponse>
+    @POST("login/")
+    fun login(@Body request: LoginRequest): Call<LoginResponse>
+
+    // 이메일로 프로필 조회
+    @GET("api/profile")
+    fun getUserProfile(@Query("email") email: String): Call<Profile>
+
+    @POST("api/user")
+    fun createUser(@Body user: User): Call<Boolean>
+
+    @POST("api/profile")
+    fun createProfile(@Body profile: Profile): Call<ProfileResponse>
+
+    // 사용자의 프로필 저장 목적
+    @GET("api/profile/")
+    suspend fun getProfile(): Response<Profile>
 
     // 포스트 조회
     @GET("api/posts")
@@ -27,6 +45,17 @@ interface ApiService {
     // 포스트 업로드
     @POST("api/posts")
     fun uploadPost(@Body post: RecruitPost): Call<RecruitPost>
+
+    // Gemini로 필터한 프로필리스트
+    @GET("api/profilelist")
+    fun getAutoMatchings() : Call<List<Profile>>
+
+
+
+
+
+
+
 
     // 포스트 삭제
     @DELETE("api/posts/{id}")
@@ -39,11 +68,9 @@ interface ApiService {
     @GET("api/profile")
     fun getProfiles() : Call<List<Profile>>
 
-    @GET("profile")
-    suspend fun _getProfiles(): List<Profile>
+    @GET("email/")
+    fun getUserEmail(@Header("Authorization") authToken: String): Call<EmailResponse>
 
-    @GET("api/profile")
-    fun getProfileByEmail(@Query("email") email: String): Call<Profile>
 
     // api/myTab/likelist/
     // api/myTab/blocklist/
@@ -78,7 +105,7 @@ data class LoginRequest(
 )
 
 data class LoginResponse(
-    val success: Boolean,
-    val message: String,
-    val userId: String?
+    @SerializedName("token") val token: String
 )
+
+data class EmailResponse(val email: String)

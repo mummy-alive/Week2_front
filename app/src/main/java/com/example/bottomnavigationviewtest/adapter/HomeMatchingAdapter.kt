@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.databinding.ItemHomeMatchingBinding
-import com.example.bottomnavigationviewtest.models.Profile
+import com.example.bottomnavigationviewtest.models.profile.Profile
 
 class HomeMatchingAdapter (private val profiles: List<Profile>) :
     RecyclerView.Adapter<HomeMatchingAdapter.MatchingViewHolder>(){

@@ -1,5 +1,7 @@
+/*
 package com.example.bottomnavigationviewtest.ui.post
 
+import MyPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,7 +14,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bottomnavigationviewtest.databinding.FragmentPostUploadBinding
-import com.example.bottomnavigationviewtest.models.RecruitPost
+import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
 import com.example.bottomnavigationviewtest.models.User
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
@@ -23,6 +25,7 @@ class PostUploadFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var postViewModel: PostViewModel
+    private lateinit var currentUser: User
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,18 +38,19 @@ class PostUploadFragment : Fragment() {
         postViewModel = ViewModelProvider(this).get(PostViewModel::class.java)
 
         val titleText: EditText = binding.titleEditText
-        val writerText: TextView = binding.writerTextView
         val contentText: EditText = binding.contentEditText
         val dateText: TextView = binding.dateTextView
         val uploadBtn: TextView = binding.uploadButton
+        // 현재 사용자 정보 가져오기
+        val email = MyPreferences.getEmail(requireContext())
+        val name = MyPreferences.getNickname(requireContext())
+
+        currentUser = email?.let { name?.let { it1 -> User(it, it1, "1234") } }!!
 
         // 날짜 설정
         dateText.text = postViewModel.getCurrentDateTime()
 
-        // 작성자
-        postViewModel.authorName.observe(viewLifecycleOwner, Observer { authorName ->
-            writerText.text = authorName
-        })
+
 
         // 글자 수 제한 및 업데이트 설정
         val contentCharCount: TextView = binding.contentCharCount
@@ -56,12 +60,10 @@ class PostUploadFragment : Fragment() {
 
         uploadBtn.setOnClickListener {
             val title = titleText.text.toString()
-            val writer = writerText.text.toString()
             val content = contentText.text.toString()
             val date = dateText.text.toString()
-            val user : User = User(email = "", name = writer)
 
-            val newPost = RecruitPost(0, title, user, content, date)  // ID는 서버에서 자동으로 설정됨
+            val newPost = RecruitPost(0, title, currentUser, content, date)  // ID는 서버에서 자동으로 설정됨
             postViewModel.uploadPost(newPost)
         }
 
@@ -86,4 +88,4 @@ class PostUploadFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
     }
-}
+}*/

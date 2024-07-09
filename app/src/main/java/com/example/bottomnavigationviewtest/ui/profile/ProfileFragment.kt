@@ -1,13 +1,15 @@
 package com.example.bottomnavigationviewtest.ui.profile
 
+import MyPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -19,8 +21,8 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private var profileViewModel: ProfileViewModel by viewModels()
 
-    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,49 +35,40 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        profileViewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-
-        // 이메일을 통해 프로필 조회
-        val email = "mummyee1024@gmail.com" // 여기에 실제로 조회할 이메일을 구현
-
-        profileViewModel.fetchProfileByEmail(email)
-
         profileViewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
-            profile?.let {
-                binding.textEmail.text = it.email
-                binding.textClass.text = it.class_tag.toString()
-                binding.textMbti.text = it.mbti
-                binding.textInterest.text = it.interest
-                // binding-tech_tag
-            }
+            if (profile != null) {
+                bindProfileData(profile)
+            } else {
+                Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
         })
 
-        val scrapBtn: TextView = binding.textMenuScrap
-        scrapBtn.setOnClickListener {
-            Log.d("scrap", "click scrap")
+        binding.textMenuScrap.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_scrapFragment)
         }
 
-        val blockBtn: TextView = binding.textMenuBlock
-        blockBtn.setOnClickListener {
-            Log.d("block", "click block")
+        binding.textMenuBlock.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_blockFragment)
         }
 
-        val likeBtn: TextView = binding.textMenuLike
-        likeBtn.setOnClickListener {
+        binding.textMenuLike.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_likeFragment)
         }
 
 
-        val myPostBtn: TextView = binding.textMenuMyPost
-        myPostBtn.setOnClickListener {
+        binding.textMenuMyPost.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_myPostFragment)
         }
-    }
+
+        binding.textMenuLogout.setOnClickListener {
+            // 로그아웃 로직을 여기에 추가합니다.
+            Toast.makeText(requireContext(), "로그아웃 되었습니다.", Toast.LENGTH_SHORT).show()
+        }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+

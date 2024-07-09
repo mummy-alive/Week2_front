@@ -7,93 +7,105 @@
     tools:context=".RegisterActivity">
 
     <TextView
-        android:id="@+id/tv_register_title"
+        android:id="@+id/text_register_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="회원가입"
+        android:text="프로필 입력"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextId"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/textClass"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="이름"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        tools:layout_editor_absoluteY="330dp" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="70dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="휴대폰번호"
+        android:id="@+id/text_interest"
+        android:layout_width="408dp"
+        android:layout_height="143dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="관심사"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8"
-        tools:layout_editor_absoluteY="391dp" />
+        tools:layout_editor_absoluteY="315dp" />
 
-    <EditText
-        android:id="@+id/editTextPasswordConfirm"
+    <TextView
+        android:id="@+id/textViewTagTech"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="비밀번호 확인"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        tools:layout_editor_absoluteY="268dp" />
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="아이디"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.8"
-        tools:layout_editor_absoluteY="139dp" />
-
-    <EditText
-        android:id="@+id/editTextPhoneNum"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="비밀번호"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="기술스택"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8"
-        tools:layout_editor_absoluteY="206dp" />
-
-    <EditText
-        android:id="@+id/editTextPasswordConfrm"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:hint="비밀번호 확인"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextPassword"
-        app:layout_constraintWidth_percent="0.8" />
+        tools:layout_editor_absoluteY="598dp" />
 
     <Button
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
-        android:text="회원가입"
+        android:layout_marginBottom="50dp"
+        android:text="프로필 저장"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintWidth_percent="0.8" />
+
+    <Spinner
+        android:id="@+id/spinner_class"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="50dp"
+        android:autofillHints="분반"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.721"
+        app:layout_constraintStart_toEndOf="@id/textClass"
+        app:layout_constraintTop_toBottomOf="@+id/text_register_title" />
+
+    <Spinner
+        android:id="@+id/spinner_mbti"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="MBTI"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="191dp" />
+
+    <Spinner
+        android:id="@+id/spinner_tech_tag"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:autofillHints="기술 선택"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="506dp" />
+
+    <CheckBox
+        android:id="@+id/is_recruit_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="구인중"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="233dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,19 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.bottomnavigationviewtest.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.example.bottomnavigationviewtest.adapter.CardStackAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
-import com.example.bottomnavigationviewtest.models.Profile
+import com.example.bottomnavigationviewtest.viewmodels.MatchingViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
-import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.Direction
 
 class MatchingFragment : Fragment() {
 
     private var _binding: FragmentMatchingBinding? = null
     private val binding get() = _binding!!
+
+    private val matchingViewModel: MatchingViewModel by viewModels()
 
     lateinit var cardStackAdapter: CardStackAdapter
     lateinit var manager: CardStackLayoutManager
@@ -43,11 +45,14 @@ class MatchingFragment : Fragment() {
             override fun onCardDisappeared(view: View?, position: Int) {}
         })
 
-        val initList = mutableListOf<Profile>()
-
-        cardStackAdapter = CardStackAdapter(requireContext(), initList)
+        cardStackAdapter = CardStackAdapter(requireContext(), mutableListOf())
         binding.cardStackView.layoutManager = manager
         binding.cardStackView.adapter = cardStackAdapter
+
+        // ViewModel에서 프로필 목록 관찰
+        matchingViewModel.autoProfiles.observe(viewLifecycleOwner, Observer { profiles ->
+            cardStackAdapter.setProfiles(profiles)
+        })
     }
 
     override fun onDestroyView() {
