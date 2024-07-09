@@ -6,7 +6,6 @@ object MyPreferences {
     private const val TOKEN_KEY = "token_key"
     private const val EMAIL_KEY = "email_key"
     private const val NICKNAME_KEY = "nickname_key"
-    var profileExist : Boolean = false
 
     private fun getSharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)

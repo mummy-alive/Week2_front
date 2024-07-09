@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import com.example.bottomnavigationviewtest.models.User
+import com.example.bottomnavigationviewtest.repository.UserRepository
 import com.kakao.sdk.user.UserApiClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,6 +19,9 @@ class LoginViewModel : ViewModel() {
 
     private val _userProfileExists = MutableLiveData<Boolean>()
     val userProfileExists: LiveData<Boolean> get() = _userProfileExists
+
+    private val _user = MutableLiveData<User?>()
+    val user: LiveData<User?> get() = _user
 
     fun loginWithKakao(context: Context) {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
@@ -41,18 +44,31 @@ class LoginViewModel : ViewModel() {
     }
 
     fun sendUserInfoToServer(email: String, name: String) {
-        val password = "1234"
-        val user = User(email, name, password)
-        Log.d("send to user info", "$email $name $password")
-        RetrofitInstance.api.createUser(user).enqueue(object : Callback<Boolean> {
-            override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
-                if (response.isSuccessful) {
-                    _userProfileExists.value = response.body() ?: false
+        UserRepository.getUserByEmail(email).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful && response.body() != null) {
+                    _user.value = response.body()
+                    _userProfileExists.value = true
+                } else {
+                    val password = "1234"
+                    val user = User(email, name, password)
+                    Log.d("send to user info", "$email $name $password")
+                    UserRepository.createUser(user).enqueue(object : Callback<Boolean> {
+                        override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
+                            _userProfileExists.value = response.isSuccessful && response.body() == true
+                        }
+
+                        override fun onFailure(call: Call<Boolean>, t: Throwable) {
+                            _userProfileExists.value = false
+                            Log.e("LoginViewModel", "sendUserInfoToServer onFailure: ${t.message}")
+                        }
+                    })
                 }
             }
 
-            override fun onFailure(call: Call<Boolean>, t: Throwable) {
-                // Handle failure
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                _userProfileExists.value = false
+                Log.e("LoginViewModel", "getUserByEmail onFailure: ${t.message}")
             }
         })
     }

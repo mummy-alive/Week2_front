@@ -19,13 +19,16 @@ import retrofit2.Response
 class RegisterActivity: AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private var techTagList: MutableList<TechTag> = mutableListOf()
-    val name  = MyPreferences.getNickname(this)
-    val email = MyPreferences.getEmail(this)
+    private var name: String? = null
+    private var email: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        name = MyPreferences.getNickname(this)
+        email = MyPreferences.getEmail(this)
 
         val spinnerClass = binding.spinnerClass
         val spinnerMbti = binding.spinnerMbti

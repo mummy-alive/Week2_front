@@ -67,13 +67,10 @@ class LoginActivity : AppCompatActivity() {
                 MyPreferences.saveNickname(this, nickname)
                 Log.d("login check email and name", "email: $email , name: $nickname")
                 sendUserInfoToServer(email, nickname) // 사용자 정보를 서버로 전송
-/*                // MainActivity로 이동
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()*/
             }
         }
     }
+
     private fun sendUserInfoToServer(email: String, name: String) {
         loginViewModel.sendUserInfoToServer(email, name)
     }

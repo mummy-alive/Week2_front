@@ -26,21 +26,24 @@ interface ApiService {
     fun login(@Body request: LoginRequest): Call<LoginResponse>
 
     // 이메일로 프로필 조회
-    @GET("api/profile")
+    @GET("api/profile/")
     fun getUserProfile(@Query("email") email: String): Call<Profile>
 
-    @POST("api/user")
+    @POST("register/")
     fun createUser(@Body user: User): Call<Boolean>
 
-    @POST("api/profile")
+    @GET("register/")
+    fun getUserByEmail(@Query("email") email: String): Call<User>
+
+    @POST("profiles/")
     fun createProfile(@Body profile: Profile): Call<ProfileResponse>
 
     // 사용자의 프로필 저장 목적
-    @GET("api/profile/")
+    @GET("profiles/")
     suspend fun getProfile(): Response<Profile>
 
     // 포스트 조회
-    @GET("api/posts")
+    @GET("api/posts/")
     suspend fun getPosts(): Response<List<RecruitPost>>
 
     // 포스트 업로드
@@ -48,12 +51,12 @@ interface ApiService {
     fun uploadPost(@Body post: RecruitPost): Call<RecruitPost>
 
     // Gemini로 필터한 프로필리스트
-    @GET("api/profilelist")
+    @GET("api/profilelist/")
     fun getAutoMatchings() : Call<List<Profile>>
 
     // 최근 네 개 포스트 조회하기
     // api/main에서 (게시글 리스트/프로필 리스트)
-    @GET("api/main")
+    @GET("api/main/")
     fun getHomeData(): Call<HomeDataResponse>
 
 
