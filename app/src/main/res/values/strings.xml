@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">bottomNavigationViewTest</string>
+    <string name="app_name">몰작교</string>
     <string name="title_home">Home</string>
     <string name="title_recruitboard">Recruitboard</string>
     <string name="title_notifications">Notifications</string>
