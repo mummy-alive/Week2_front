@@ -1,4 +1,3 @@
-/*
 package com.example.bottomnavigationviewtest.ui.post
 
 import MyPreferences
@@ -20,7 +19,7 @@ import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 
 class PostUploadFragment : Fragment() {
-
+/*
     private var _binding: FragmentPostUploadBinding? = null
     private val binding get() = _binding!!
 
@@ -87,5 +86,5 @@ class PostUploadFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-    }
-}*/
+    }*/
+}

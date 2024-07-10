@@ -22,6 +22,8 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="같은 팀 되지 않기"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"

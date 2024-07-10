@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bottomnavigationviewtest.databinding.FragmentPostBinding
+import com.example.bottomnavigationviewtest.ui.matching.PostAdapter
 import com.example.bottomnavigationviewtest.viewmodels.PostViewModel
 
 class PostFragment : Fragment() {
@@ -39,6 +40,13 @@ class PostFragment : Fragment() {
                 Toast.makeText(requireContext(), "포스트를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         })
+
+        postViewModel.fetchPosts()
+        /*
+        하트온/하트오프 비져블 이벤트
+        하트온/하트오프 스크랩추가/삭제 이벤트
+        하트온/하트오프 postfetch 이벤트
+         */
 
         binding.uploadButton.setOnClickListener {
             // 업로드 버튼 클릭 이벤트 처리

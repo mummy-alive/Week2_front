@@ -1,7 +1,5 @@
-/*package com.example.bottomnavigationviewtest.ui.profile
+package com.example.bottomnavigationviewtest.ui.profile
 
-import LikeAdapter
-import LikeViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +13,7 @@ import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.databinding.FragmentLikeBinding
 
 class LikeFragment : Fragment() {
-    private var _binding: FragmentLikeBinding? = null
+ /*   private var _binding: FragmentLikeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
@@ -50,5 +48,5 @@ class LikeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-}*/
+    }*/
+}

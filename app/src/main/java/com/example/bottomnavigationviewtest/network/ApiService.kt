@@ -69,6 +69,24 @@ interface ApiService {
     @POST("api/posts")
     fun uploadPost(@Body post: RecruitPost): Call<RecruitPost>
 
+    // 스크랩 관련
+    // 스크랩 상태 확인
+    @GET("api/myTab/scraplist/{postId}")
+    fun getScrap(@Path("postId") postId: Int): Call<Boolean>
+
+    // 스크랩 추가
+    @POST("api/myTab/scraplist/{postId}")
+    fun addScrap(@Path("postId") postId: Int): Call<Void>
+
+    // 스크랩 제거
+    @DELETE("api/myTab/scraplist/{postId}")
+    fun removeScrap(@Path("postId") postId: Int): Call<Void>
+
+    // 스크랩 조회
+    @GET("api/myTab/scraplist/")
+    suspend fun getScrapPosts(): Response<List<RecruitPost>>
+
+
     // Gemini로 필터한 프로필리스트
     @GET("api/profilelist/")
     fun getAutoMatchings(@Query("email") email: String): Call<List<Profile>>

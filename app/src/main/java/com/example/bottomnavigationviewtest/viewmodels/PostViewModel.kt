@@ -12,14 +12,20 @@ class PostViewModel : ViewModel() {
     private val _posts = MutableLiveData<List<RecruitPost>>()
     val posts: LiveData<List<RecruitPost>> get() = _posts
 
-    init {
-        fetchPosts()
-    }
 
-    private fun fetchPosts() {
+    fun fetchPosts() {
         viewModelScope.launch {
-            val postsData = PostRepository.getPosts()
-            _posts.postValue(postsData!!)
+            try {
+                val response = PostRepository.getPosts()
+                if (response.isSuccessful) {
+                    _posts.postValue(response.body())
+                } else {
+                    _posts.postValue(emptyList())
+                }
+            } catch (e: Exception) {
+                _posts.postValue(emptyList())
+                e.printStackTrace() // 로그에 예외 메시지 출력
+            }
         }
     }
 }

@@ -1,7 +1,5 @@
-/*
 package com.example.bottomnavigationviewtest.ui.profile
 
-import BlockViewModel
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +14,7 @@ import com.example.bottomnavigationviewtest.adapter.BlockAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentBlockBinding
 
 class BlockFragment : Fragment() {
-    private var _binding: FragmentBlockBinding? = null
+/*    private var _binding: FragmentBlockBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var recyclerView: RecyclerView
@@ -51,6 +49,5 @@ class BlockFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
+    }*/
 }
-*/
