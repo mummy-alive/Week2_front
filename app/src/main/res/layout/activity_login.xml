@@ -29,25 +29,11 @@
             android:text="몰 작 교"
             android:textSize="50sp" />
 
-        <EditText
-            android:id="@+id/email_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:inputType="textEmailAddress" />
-
-        <EditText
-            android:id="@+id/password_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword" />
-
 
         <ImageButton
             android:id="@+id/button_kakao"
-            android:layout_width="266dp"
-            android:layout_height="95dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp"
             app:srcCompat="@drawable/kakao_login_medium_wide" />

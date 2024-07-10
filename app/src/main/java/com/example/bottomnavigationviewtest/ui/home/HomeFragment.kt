@@ -14,8 +14,8 @@ import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.databinding.FragmentHomeBinding
 import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.models.recruitpost.RecruitPost
+import com.example.bottomnavigationviewtest.ui.adapter.CardAdapter
 import com.example.bottomnavigationviewtest.viewmodels.HomeViewModel
-import com.example.bottomnavigationviewtest.ui.matching.CardAdapter
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null

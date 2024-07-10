@@ -34,15 +34,25 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         val navView: BottomNavigationView = binding.navView
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.primaryColor)))
+        supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(
+                ContextCompat.getColor(
+                    this,
+                    R.color.primaryColor
+                )
+            )
+        )
 
         // NavController 설정
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
         val navController = navHostFragment.navController
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_recruitpost_button,R.id.navigation_matching_button, R.id.navigation_profile
+                R.id.navigation_recruitpost_fragment,
+                R.id.navigation_matching_fragment,
+                R.id.navigation_profile_fragment
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -56,24 +66,22 @@ class MainActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_matching_button -> {
-                    navController.navigate(R.id.navigation_matching_button, null, navOptions)
+                    navController.navigate(R.id.navigation_matching_fragment, null, navOptions)
                     true
                 }
+
                 R.id.navigation_recruitpost_button -> {
-                    navController.navigate(R.id.navigation_recruitpost_button, null, navOptions)
+                    navController.navigate(R.id.navigation_recruitpost_fragment, null, navOptions)
                     true
                 }
+
                 R.id.navigation_profile -> {
-                    navController.navigate(R.id.navigation_profile, null, navOptions)
+                    navController.navigate(R.id.navigation_profile_fragment, null, navOptions)
                     true
                 }
+
                 else -> false
             }
-        }
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            navController.navigate(R.id.navigation_matching_button)
         }
     }
 

@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUserWithKakaoToken(kakaoToken: String) {
-        val request = LoginRequest(name = "송종찬54", email = "jongchan54@naver.com", password = "11111111")
+        val request = LoginRequest(name = "송종찬3asa2", email = "joanag61@naer.com", password = "11111111")
         RetrofitInstance.api.loginWithKakao(kakaoToken, request).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
@@ -58,7 +58,6 @@ class LoginActivity : AppCompatActivity() {
                         /*
 
                         MyPreferences.saveToken(this@LoginActivity, loginResponse.token)*/
-                        Toast.makeText(this@LoginActivity, "Welcome, ${loginResponse.user.name}", Toast.LENGTH_LONG).show()
                         checkUserProfile(loginResponse.token, loginResponse.user.email)
                     }
                 } else {
@@ -77,8 +76,10 @@ class LoginActivity : AppCompatActivity() {
             override fun onResponse(call: Call<Profile>, response: Response<Profile>) {
                 if (response.isSuccessful && response.body() != null) {
                     // 프로필이 존재하면 MainActivity로 이동
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    // 프로필이 없으면 RegisterActivity로 이동
+                    val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
                     intent.putExtra("USER_TOKEN", token)
+                    intent.putExtra("USER_EMAIL", email)
                     startActivity(intent)
                     finish()
                 } else {

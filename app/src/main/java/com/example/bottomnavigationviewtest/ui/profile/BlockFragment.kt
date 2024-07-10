@@ -12,42 +12,49 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.bottomnavigationviewtest.R
 import com.example.bottomnavigationviewtest.adapter.BlockAdapter
 import com.example.bottomnavigationviewtest.databinding.FragmentBlockBinding
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
 class BlockFragment : Fragment() {
-/*    private var _binding: FragmentBlockBinding? = null
-    private val binding get() = _binding!!
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var blockAdapter: BlockAdapter
-    private val viewModel: BlockViewModel by viewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentBlockBinding.inflate(inflater, container, false)
-        return binding.root
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_block, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = binding.blockRecycler
-        recyclerView.layoutManager = LinearLayoutManager(context)
-
-        blockAdapter = BlockAdapter(emptyList(), viewModel::deleteBlock)
-        recyclerView.adapter = blockAdapter
-
-        viewModel.profiles.observe(viewLifecycleOwner, Observer { profiles ->
-            blockAdapter = BlockAdapter(profiles, viewModel::deleteBlock)
-            recyclerView.adapter = blockAdapter
-        })
-
-        viewModel.fetchBlocksByFromId(1) // 예시로 userId 1의 블락목록을 가져옴
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment MyPostFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            MyPostFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }*/
 }

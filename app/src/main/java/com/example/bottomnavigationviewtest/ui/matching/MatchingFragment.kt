@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
+import com.example.bottomnavigationviewtest.ui.adapter.CardAdapter
 import com.example.bottomnavigationviewtest.viewmodels.MatchingViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 
@@ -47,7 +48,6 @@ class MatchingFragment : Fragment() {
             if (profiles != null && profiles.isNotEmpty()) {
                 adapter.updateProfiles(profiles)
             } else {
-                Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         })
     }

@@ -40,7 +40,6 @@ class ProfileFragment : Fragment() {
             if (profile != null) {
                 bindProfileData(profile)
             } else {
-                Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         })
 

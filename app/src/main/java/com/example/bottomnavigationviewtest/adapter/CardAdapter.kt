@@ -1,4 +1,4 @@
-package com.example.bottomnavigationviewtest.ui.matching
+package com.example.bottomnavigationviewtest.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

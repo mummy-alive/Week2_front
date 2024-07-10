@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="이름"
+            android:text="송종찬"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:text="MBTI"
+            android:text="INTP"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_name" />
 
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            android:text="구직여부"
+            android:text="구직중"
             android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@id/text_tech"
             app:layout_constraintTop_toBottomOf="@id/text_class" />
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:text="분반"
+            android:text="4분반"
             android:textSize="10sp"
             app:layout_constraintEnd_toStartOf="@+id/text_tech"
             app:layout_constraintTop_toBottomOf="@id/imageView" />
@@ -83,7 +83,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:text="EmailText"
+            android:text="fkrfkrfkr2@naver.com"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_email_title"
             app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +106,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
-            android:text="기술태그"
+            android:text="Kotlin"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -119,7 +119,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            android:text="InterestText"
+            android:text="탁구"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imageView"

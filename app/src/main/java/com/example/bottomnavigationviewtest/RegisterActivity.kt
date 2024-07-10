@@ -49,11 +49,6 @@ class RegisterActivity: AppCompatActivity() {
         val spinnerMbti = binding.spinnerMbti
         val spinnerTechTag = binding.spinnerTechTag
 
-        if (name == null || email == null) {
-            Toast.makeText(this, "사용자 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
 
         var selectedClassIndex: Int = -1
         var selectedTechTagIndex: Int = -1
@@ -154,8 +149,7 @@ class RegisterActivity: AppCompatActivity() {
                         }
                     }*/
                         else {
-                        Log.d("failed profile check","$profile")
-                        Toast.makeText(this@RegisterActivity, "Failed to create profile: ${response.message()}", Toast.LENGTH_LONG).show()
+                        Intent(this@RegisterActivity, MainActivity::class.java)
                     }
                 }
 
