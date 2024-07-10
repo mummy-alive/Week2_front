@@ -75,8 +75,9 @@ interface ApiService {
 
     // Gemini로 필터한 프로필리스트
     @GET("api/profilelist/")
-    fun getAutoMatchings() : Call<List<Profile>>
-
+    fun getAutoMatchings(
+        @Query("email") email: String
+    ): Call<List<Profile>>
     // 최근 네 개 포스트 조회하기
     // api/main에서 (게시글 리스트/프로필 리스트)
     @GET("api/main/")

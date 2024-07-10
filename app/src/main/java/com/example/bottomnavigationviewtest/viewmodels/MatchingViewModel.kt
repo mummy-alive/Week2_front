@@ -1,5 +1,6 @@
 package com.example.bottomnavigationviewtest.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,16 +14,19 @@ class MatchingViewModel : ViewModel() {
     private val _profiles = MutableLiveData<List<Profile>>()
     val profiles: LiveData<List<Profile>> get() = _profiles
 
-    fun fetchProfiles() {
-        MatchingRepository.getAutoMatchings().enqueue(object : Callback<List<Profile>> {
+    fun fetchProfiles(email: String) {
+        MatchingRepository.getAutoMatchings(email).enqueue(object : Callback<List<Profile>> {
             override fun onResponse(call: Call<List<Profile>>, response: Response<List<Profile>>) {
                 if (response.isSuccessful) {
                     _profiles.postValue(response.body())
+                    Log.d("matching fetch", "${response.body()}")
+                } else {
+                    Log.e("matching fetch error", "Response not successful: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<List<Profile>>, t: Throwable) {
-                // Handle failure
+                Log.e("matching fail", "$t")
             }
         })
     }

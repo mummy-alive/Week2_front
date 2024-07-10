@@ -5,7 +5,7 @@ import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import retrofit2.Call
 
 object MatchingRepository {
-    fun getAutoMatchings(): Call<List<Profile>> {
-        return RetrofitInstance.api.getAutoMatchings()
+    fun getAutoMatchings(email: String): Call<List<Profile>> {
+        return RetrofitInstance.api.getAutoMatchings(email)
     }
 }

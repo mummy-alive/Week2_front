@@ -1,6 +1,7 @@
 package com.example.bottomnavigationviewtest.ui.matching
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,15 +39,20 @@ class MatchingFragment : Fragment() {
         cardStackView.layoutManager = manager
         cardStackView.adapter = adapter
 
-        matchingViewModel.profiles.observe(viewLifecycleOwner, Observer { profiles ->
-            if (profiles != null) {
-                adapter.updateProfiles(profiles)
-            } else {
-                Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
-            }
-        })
+        val email = MyPreferences.getEmail(requireContext())
+        if (email != null) {
+            matchingViewModel.fetchProfiles(email)
+        } else {
+            Log.d("no email check", "")
+        }
+            matchingViewModel.profiles.observe(viewLifecycleOwner, Observer { profiles ->
+                if (profiles != null) {
+                    adapter.updateProfiles(profiles)
+                } else {
+                    Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+                }
+            })
 
-        matchingViewModel.fetchProfiles()
     }
 
     override fun onDestroyView() {
