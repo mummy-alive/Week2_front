@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,10 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:fontFamily="@font/mango_ddobak_b"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <fragment
@@ -23,11 +25,11 @@
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintBottom_toTopOf="@id/nav_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:navGraph="@navigation/mobile_navigation" />
 
     <!-- 플로팅 액션 버튼 -->
@@ -37,6 +39,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="center|bottom"
+        app:backgroundTint="@color/backgroundColor"
         app:fabSize="normal"
         app:layout_anchor="@id/nav_view"
         app:layout_anchorGravity="center"
@@ -50,10 +53,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
+        android:fontFamily="@font/mango_ddobak_b"
+        app:backgroundTint="@color/primaryColor"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:itemIconTint="@color/backgroundColor"
+        app:itemTextColor="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:menu="@menu/bottom_nav_menu" >
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

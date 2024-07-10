@@ -1,8 +1,10 @@
 package com.example.bottomnavigationviewtest
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         // Toolbar 설정
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.primaryColor)))
 
         val navView: BottomNavigationView = binding.navView
 
