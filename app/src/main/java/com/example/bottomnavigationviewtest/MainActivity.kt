@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_home -> {
+                R.id.navigation_home  -> {
                     navController.navigate(R.id.navigation_home, null, navOptions)
                     true
                 }
