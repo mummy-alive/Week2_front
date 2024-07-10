@@ -35,32 +35,27 @@ interface ApiService {
     fun loginWithKakao(@Header("Authorization") kakaoToken: String, @Body request: LoginRequest): Call<LoginResponse>
 
     @POST("api/token/refresh/")
-    fun refreshAccessToken(
-        @Body refreshToken: Map<String, String>
-    ): Call<TokenResponse>
+    fun refreshAccessToken(@Body refreshToken: Map<String, String>): Call<TokenResponse>
 
     // 이메일로 프로필 조회
     @GET("api/profile/")
     fun getUserProfile(@Query("email") email: String): Call<Profile>
 
     @POST("register/")
-    fun createUser(
-        @Body user: User
-    ): Call<Boolean>
+    fun createUser(@Body user: User): Call<Boolean>
 
     @GET("users/{email}")
     fun getUserByEmail(@Path("email") email: String): Call<User>
 
     // 프로필 생성
-    @POST("api/profile/")
-    fun createProfile(
-        @Body profile: Profile
-    ): Call<ProfileResponse>
+    @POST("api/addprofile/")
+    fun createProfile(@Body profile: Profile): Call<ProfileResponse>
 
-    // 사용자의 프로필 저장 목적
+    // 사용자의 프로필 저장 목적 (업뎃)
     @GET("api/profile/")
     suspend fun getProfile(): Response<Profile>
 
+    // 포스트
     // 포스트 조회
     @GET("api/posts/")
     suspend fun getPosts(): Response<List<RecruitPost>>
@@ -71,15 +66,15 @@ interface ApiService {
 
     // 스크랩 관련
     // 스크랩 상태 확인
-    @GET("api/myTab/scraplist/{postId}")
+    @GET("api/posts/{postId}/scrap")
     fun getScrap(@Path("postId") postId: Int): Call<Boolean>
 
     // 스크랩 추가
-    @POST("api/myTab/scraplist/{postId}")
+    @POST("api/posts/{postId}/scrap/")
     fun addScrap(@Path("postId") postId: Int): Call<Void>
 
     // 스크랩 제거
-    @DELETE("api/myTab/scraplist/{postId}")
+    @DELETE("api/myTab/{postId}/scrap/")
     fun removeScrap(@Path("postId") postId: Int): Call<Void>
 
     // 스크랩 조회
@@ -122,7 +117,6 @@ interface ApiService {
 
     @DELETE("api/likes/{like_id}/")
     fun deleteBlock(@Path("like_id") likeId: Int): Call<Void>
-    // 스크랩/내 글도 똑같이 구현
 
 
     // 차단목록 조회

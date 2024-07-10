@@ -69,4 +69,6 @@
         android:label="Post Upload"
         tools:layout="@layout/fragment_post_upload" />
 
+
+
 </navigation>

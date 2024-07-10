@@ -54,11 +54,19 @@ class PostAdapter(private var posts: List<RecruitPost>) : RecyclerView.Adapter<P
             // 하트 오프 클릭 이벤트 처리
             imageHeartOff.setOnClickListener {
                 addScrap(post.post_id)
+                imageHeartOn.visibility = View.VISIBLE
+                imageHeartOff.visibility = View.INVISIBLE
             }
 
             // 하트 온 클릭 이벤트 처리
             imageHeartOn.setOnClickListener {
                 removeScrap(post.post_id)
+                imageHeartOff.visibility = View.VISIBLE
+                imageHeartOn.visibility = View.INVISIBLE
+            }
+
+            binding.root.setOnClickListener{
+                
             }
         }
 
