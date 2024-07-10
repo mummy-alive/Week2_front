@@ -6,10 +6,10 @@ import retrofit2.Call
 
 object UserRepository {
     fun createUser(token: String, user: User): Call<Boolean> {
-        return RetrofitInstance.api.createUser("Bearer $token", user)
+        return RetrofitInstance.api.createUser(user)
     }
 
     fun getUserByEmail(token: String, email: String): Call<User> {
-        return RetrofitInstance.api.getUserByEmail("Bearer $token", email)
+        return RetrofitInstance.api.getUserByEmail(email)
     }
 }

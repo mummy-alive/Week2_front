@@ -45,15 +45,11 @@ interface ApiService {
 
     @POST("register/")
     fun createUser(
-        @Header("Authorization")token: String,
         @Body user: User
     ): Call<Boolean>
 
     @GET("users/{email}")
-    fun getUserByEmail(
-        @Header("Authorization") token: String,
-        @Path("email") email: String
-    ): Call<User>
+    fun getUserByEmail(@Path("email") email: String): Call<User>
 
     // 프로필 생성
     @POST("api/profile/")
@@ -75,13 +71,12 @@ interface ApiService {
 
     // Gemini로 필터한 프로필리스트
     @GET("api/profilelist/")
-    fun getAutoMatchings(
-        @Query("email") email: String
-    ): Call<List<Profile>>
+    fun getAutoMatchings(@Query("email") email: String): Call<List<Profile>>
+
     // 최근 네 개 포스트 조회하기
     // api/main에서 (게시글 리스트/프로필 리스트)
     @GET("api/main/")
-    fun getHomeData(@Header("Authorization") token: String): Call<HomeDataResponse>
+    fun getHomeData(): Call<HomeDataResponse>
     // Bearer $token
 
 
@@ -94,18 +89,8 @@ interface ApiService {
     @PUT("api/posts/{id}")
     fun editPost(@Path("id") id: Int, @Body post: RecruitPost) : Call<RecruitPost>
 
-    // 수동매칭-프로필 가져오기
-    @GET("api/profile")
-    fun getProfiles() : Call<List<Profile>>
-
     @GET("email/")
     fun getUserEmail(@Header("Authorization") authToken: String): Call<EmailResponse>
-
-
-    // api/myTab/likelist/
-    // api/myTab/blocklist/
-    // api/token/refresh
-
 
     @GET("api/likes/")
     fun getLikedProfiles(@Header("Authorization") token: String): Call<List<UserLikeResponse>>

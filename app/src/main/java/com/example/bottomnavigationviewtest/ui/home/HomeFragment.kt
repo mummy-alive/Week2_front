@@ -39,9 +39,9 @@ class HomeFragment : Fragment() {
         binding.homeMatchingRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.homeMatchingRecycler.adapter = autoMatchingAdapter
 
+        // Observe for home data
         homeViewModel.homeData.observe(viewLifecycleOwner, Observer { homeData ->
             if (homeData != null) {
-                bindProfileData(homeData.profiles.firstOrNull())
                 autoMatchingAdapter.updateProfiles(homeData.profiles)
                 bindRecentPosts(homeData.recentPosts.take(4))
             } else {
@@ -49,18 +49,33 @@ class HomeFragment : Fragment() {
             }
         })
 
+        // Observe for profile data
+        homeViewModel.profile.observe(viewLifecycleOwner, Observer { profile ->
+            bindProfileData(profile)
+        })
+
+        // Fetch data
+        // Fetch data
         homeViewModel.fetchHomeData()
+        val email = MyPreferences.getEmail(requireContext()) // SharedPreferences에서 이메일 가져오기
+        if (email != null) {
+            homeViewModel.fetchProfile(email)
+        } else {
+            Toast.makeText(requireContext(), "이메일을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun bindProfileData(profile: Profile?) {
         if (profile != null) {
             binding.textName.text = profile.email
             binding.textEmail.text = profile.email
-            binding.textClass.text = profile.class_tag.toString()
+            binding.textClass.text = "${profile.class_tag}분반"
             binding.textMbti.text = profile.mbti
             binding.textInterest.text = profile.interest
             binding.textIsRecruit.text = if (profile.is_recruit) "구직 중" else "구직 안함"
-            binding.textTech.text = profile.tech_tags.toString()
+            binding.textTech.text = profile.tech_tags.joinToString(", ") { techTagId ->
+                techTagsMap[techTagId] ?: "알 수 없음"
+            }
         }
     }
 
@@ -87,5 +102,25 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private val techTagsMap = mapOf(
+            1 to "프론트엔드",
+            2 to "백엔드",
+            3 to "앱개발",
+            4 to "웹개발",
+            5 to "데이터분석",
+            6 to "인공지능",
+            7 to "하드웨어",
+            8 to "OS",
+            9 to "자바",
+            10 to "파이썬",
+            11 to "C / C++",
+            12 to "C#",
+            13 to "Kotlin",
+            14 to "HTML/CSS",
+            15 to "UI 디자인"
+        )
     }
 }
