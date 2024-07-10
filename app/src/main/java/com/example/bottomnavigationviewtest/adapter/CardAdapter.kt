@@ -34,7 +34,7 @@ class CardAdapter(private var profiles: List<Profile>) : RecyclerView.Adapter<Ca
             binding.textClass.text = profile.class_tag.toString()
 
             // 기술 태그들을 띄어쓰기로 구분된 문자열로 설정
-            val techTagsString = profile.tech_tags.joinToString(" ") { it.tech_tag_name }
+            val techTagsString = profile.tech_tags.toString()
             binding.textTech.text = techTagsString
         }
     }

@@ -43,8 +43,8 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun sendUserInfoToServer(email: String, name: String) {
-        UserRepository.getUserByEmail(email).enqueue(object : Callback<User> {
+    fun sendUserInfoToServer(email: String, name: String, token:String) {
+        UserRepository.getUserByEmail(token, email).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful && response.body() != null) {
                     _user.value = response.body()
@@ -53,7 +53,8 @@ class LoginViewModel : ViewModel() {
                     val password = "1234"
                     val user = User(email, name, password)
                     Log.d("send to user info", "$email $name $password")
-                    UserRepository.createUser(user).enqueue(object : Callback<Boolean> {
+                    Log.d("서버에 보내는 check current token", "$token")
+                    UserRepository.createUser(token, user).enqueue(object : Callback<Boolean> {
                         override fun onResponse(call: Call<Boolean>, response: Response<Boolean>) {
                             _userProfileExists.value = response.isSuccessful && response.body() == true
                         }

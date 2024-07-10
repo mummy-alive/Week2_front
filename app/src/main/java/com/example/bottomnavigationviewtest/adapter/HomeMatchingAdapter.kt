@@ -28,7 +28,7 @@ class HomeMatchingAdapter(private var profiles: List<Profile>) : RecyclerView.Ad
         fun bind(profile: Profile) {
             binding.matchingMbti.text = profile.mbti
             binding.matchingInterest.text = profile.interest
-            binding.matchingTech.text = profile.tech_tags.joinToString(" ") { it.tech_tag_name }
+            binding.matchingTech.text = profile.tech_tags.toString()
             // 이미지 로드 로직을 여기에 추가
         }
     }

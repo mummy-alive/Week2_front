@@ -1,6 +1,9 @@
 package com.example.bottomnavigationviewtest
 
+import MyPreferences
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -11,6 +14,7 @@ import com.example.bottomnavigationviewtest.models.Email
 import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.models.profile.ProfileResponse
 import com.example.bottomnavigationviewtest.models.TechTag
+import com.example.bottomnavigationviewtest.models.TokenResponse
 import com.example.bottomnavigationviewtest.network.RetrofitInstance
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,9 +22,14 @@ import retrofit2.Response
 
 class RegisterActivity: AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private var techTagList: MutableList<TechTag> = mutableListOf()
+    private var techTagList: MutableList<Int> = mutableListOf()
     private var name: String? = null
     private var email: String? = null
+    private lateinit var token: String
+    private lateinit var refreshToken: String
+    private var userToken: String? = null
+    private var userEmail: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +38,12 @@ class RegisterActivity: AppCompatActivity() {
 
         name = MyPreferences.getNickname(this)
         email = MyPreferences.getEmail(this)
+        token = MyPreferences.getToken(this) ?: ""
+        refreshToken = MyPreferences.getRefreshToken(this) ?: ""
+
+        userToken = intent.getStringExtra("USER_TOKEN")
+        userEmail = intent.getStringExtra("USER_EMAIL")
+
 
         val spinnerClass = binding.spinnerClass
         val spinnerMbti = binding.spinnerMbti
@@ -95,10 +110,9 @@ class RegisterActivity: AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                val selectedTechTag = TechTag(position, techTagOptions[position])
-                if (!techTagList.contains(selectedTechTag)) {
-                    techTagList.add(selectedTechTag)
-                }
+                val selectedTechTag = TechTag(position+1, techTagOptions[position])
+                    techTagList.add(position+1)
+                    Log.d("techTag Test", "$selectedTechTag")
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -112,9 +126,10 @@ class RegisterActivity: AppCompatActivity() {
     }
 
     private fun createProfile() {
+        val email = MyPreferences.getEmail(this).toString()
         val profile = Profile(
             profile_id = 1, // 임의의 값
-            email = Email(email!!, null, name!!),
+            email = email,
             class_tag = binding.spinnerClass.selectedItemPosition + 1,
             mbti = binding.spinnerMbti.selectedItem.toString(),
             interest = binding.textInterest.text.toString(),
@@ -122,17 +137,52 @@ class RegisterActivity: AppCompatActivity() {
             tech_tags = techTagList
         )
 
-        RetrofitInstance.api.createProfile(profile).enqueue(object : Callback<ProfileResponse> {
-            override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
-                if (response.isSuccessful) {
-                    Toast.makeText(this@RegisterActivity, "프로필이 등록되었습니다.", Toast.LENGTH_SHORT).show()
+        if (userToken != null || userToken == null) {
+            RetrofitInstance.api.createProfile(/*"Bearer $userToken", */profile).enqueue(object : Callback<ProfileResponse> {
+                override fun onResponse(call: Call<ProfileResponse>, response: Response<ProfileResponse>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@RegisterActivity, "Profile created successfully", Toast.LENGTH_LONG).show()
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+/*                        intent.putExtra("USER_TOKEN", userToken)*/
+                        startActivity(intent)
+                        finish()
+                    } /*else if (response.code() == 401) {
+                        refreshAccessToken { newToken ->
+                            userToken = newToken
+                            MyPreferences.saveToken(this@RegisterActivity, newToken)
+                            createProfile() // 갱신된 토큰으로 프로필 생성 다시 시도
+                        }
+                    }*/
+                        else {
+                        Log.d("failed profile check","$profile")
+                        Toast.makeText(this@RegisterActivity, "Failed to create profile: ${response.message()}", Toast.LENGTH_LONG).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                    Toast.makeText(this@RegisterActivity, "Error: ${t.message}", Toast.LENGTH_LONG).show()
+                }
+            })
+        } else {
+            Toast.makeText(this, "User token is missing", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun refreshAccessToken(onTokenRefreshed: (String) -> Unit) {
+        val refreshTokenMap = mapOf("refresh" to refreshToken)
+        RetrofitInstance.api.refreshAccessToken(refreshTokenMap).enqueue(object : Callback<TokenResponse> {
+            override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val newToken = response.body()!!.accessToken
+                    onTokenRefreshed(newToken)
                 } else {
-                    Toast.makeText(this@RegisterActivity, "등록 실패", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "토큰 갱신 실패", Toast.LENGTH_SHORT).show()
+                    Log.d("토큰 갱신 실패", "$token")
                 }
             }
 
-            override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
-                Toast.makeText(this@RegisterActivity, "네트워크 오류: ${t.message}", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
+                Toast.makeText(this@RegisterActivity, "토큰 갱신 네트워크 오류: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

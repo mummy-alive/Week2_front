@@ -17,6 +17,16 @@ object MyPreferences {
         editor.apply()
     }
 
+    fun saveRefreshToken(context: Context, refreshToken: String) {
+        val editor = getSharedPreferences(context).edit()
+        editor.putString("refresh_token", refreshToken)
+        editor.apply()
+    }
+
+    fun getRefreshToken(context: Context): String? {
+        return getSharedPreferences(context).getString("refresh_token", null)
+    }
+
     fun saveEmail(context: Context, email: String) {
         val editor = getSharedPreferences(context).edit()
         editor.putString(EMAIL_KEY, email)

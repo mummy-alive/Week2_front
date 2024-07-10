@@ -69,13 +69,13 @@ class ProfileFragment : Fragment() {
     }
 
     private fun bindProfileData(profile: Profile) {
-        binding.textName.text = profile.email.name
-        binding.textEmail.text = profile.email.email
+        binding.textName.text = profile.email
+        binding.textEmail.text = profile.email
         binding.textClass.text = profile.class_tag.toString()
         binding.textMbti.text = profile.mbti
         binding.textInterest.text = profile.interest
         binding.textIsRecruit.text = if (profile.is_recruit) "구직 중" else "구직 안함"
-        binding.textTech.text = profile.tech_tags.joinToString(", ") { it.tech_tag_name }
+        binding.textTech.text = profile.tech_tags.toString()
     }
 
 

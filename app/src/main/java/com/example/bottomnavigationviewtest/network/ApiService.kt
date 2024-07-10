@@ -1,6 +1,7 @@
 package com.example.bottomnavigationviewtest.network
 
 import com.example.bottomnavigationviewtest.models.HomeDataResponse
+import com.example.bottomnavigationviewtest.models.TokenResponse
 import com.example.bottomnavigationviewtest.models.profile.Profile
 import com.example.bottomnavigationviewtest.models.UserLikeResponse
 import com.example.bottomnavigationviewtest.models.profile.ProfileResponse
@@ -19,27 +20,49 @@ import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+data class LoginRequest(val name:String, val email: String, val password: String)
+data class LoginResponse(val token: String, val user: User)
+
+data class User(val id: Int, val email: String, val name: String)
+
 // GET/POST 메서드
 interface ApiService {
+
     // 카카오 로그인 : 로그인 정보를 넘김
+/*    @POST("login/")
+    fun login(@Body request: LoginRequest): Call<LoginResponse>*/
     @POST("login/")
-    fun login(@Body request: LoginRequest): Call<LoginResponse>
+    fun loginWithKakao(@Header("Authorization") kakaoToken: String, @Body request: LoginRequest): Call<LoginResponse>
+
+    @POST("api/token/refresh/")
+    fun refreshAccessToken(
+        @Body refreshToken: Map<String, String>
+    ): Call<TokenResponse>
 
     // 이메일로 프로필 조회
     @GET("api/profile/")
     fun getUserProfile(@Query("email") email: String): Call<Profile>
 
     @POST("register/")
-    fun createUser(@Body user: User): Call<Boolean>
+    fun createUser(
+        @Header("Authorization")token: String,
+        @Body user: User
+    ): Call<Boolean>
 
-    @GET("register/")
-    fun getUserByEmail(@Query("email") email: String): Call<User>
+    @GET("users/{email}")
+    fun getUserByEmail(
+        @Header("Authorization") token: String,
+        @Path("email") email: String
+    ): Call<User>
 
-    @POST("profiles/")
-    fun createProfile(@Body profile: Profile): Call<ProfileResponse>
+    // 프로필 생성
+    @POST("api/profile/")
+    fun createProfile(
+        @Body profile: Profile
+    ): Call<ProfileResponse>
 
     // 사용자의 프로필 저장 목적
-    @GET("profiles/")
+    @GET("api/profile/")
     suspend fun getProfile(): Response<Profile>
 
     // 포스트 조회
@@ -57,8 +80,8 @@ interface ApiService {
     // 최근 네 개 포스트 조회하기
     // api/main에서 (게시글 리스트/프로필 리스트)
     @GET("api/main/")
-    fun getHomeData(): Call<HomeDataResponse>
-
+    fun getHomeData(@Header("Authorization") token: String): Call<HomeDataResponse>
+    // Bearer $token
 
 
 
@@ -103,15 +126,6 @@ interface ApiService {
 
 data class TokenRequest(
     val token: String
-)
-
-data class LoginRequest(
-    val email: String,
-    val password: String
-)
-
-data class LoginResponse(
-    @SerializedName("token") val token: String
 )
 
 data class EmailResponse(val email: String)

@@ -5,6 +5,17 @@ import android.content.Context
 import com.kakao.sdk.common.KakaoSdk
 
 class GlobalApplication : Application() {
+    init {
+        instance = this
+    }
+
+    companion object {
+        private var instance: GlobalApplication? = null
+
+        fun applicationContext(): Context {
+            return instance!!.applicationContext
+        }
+    }
 
 
     override fun onCreate() {
