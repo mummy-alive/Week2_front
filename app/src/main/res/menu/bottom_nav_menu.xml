@@ -10,6 +10,6 @@
     <item
         android:id="@+id/navigation_recruitpost_button"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="구인게시판" />
+        android:title="게시판" />
 
 </menu>

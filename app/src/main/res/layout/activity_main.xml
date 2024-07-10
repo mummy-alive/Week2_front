@@ -5,6 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,10 +14,12 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/mango_ddobak_b"
         app:layout_constraintEnd_toEndOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
@@ -34,6 +37,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
+        app:backgroundTint="@color/backgroundColor"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="center|bottom"
@@ -43,13 +47,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/nav_view"
-        app:tint="@android:color/white" />
+        app:tint="@android:color/white"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
+        android:fontFamily="@font/mango_ddobak_b"
+        app:backgroundTint="@color/primaryColor"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
+        app:itemIconTint="@color/backgroundColor"
+        app:itemTextColor="@color/backgroundColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
