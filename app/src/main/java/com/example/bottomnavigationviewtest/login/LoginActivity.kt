@@ -47,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginUserWithKakaoToken(kakaoToken: String) {
-        val request = LoginRequest(name = "송종찬52", email = "jongchan52@naver.com", password = "11111111")
+        val request = LoginRequest(name = "송종찬53", email = "jongchan53@naver.com", password = "11111111")
         RetrofitInstance.api.loginWithKakao(kakaoToken, request).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {

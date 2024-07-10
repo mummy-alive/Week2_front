@@ -3,14 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/navigation_home">
-
+    app:startDestination="@id/navigation_matching_fragment">
+=
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.bottomnavigationviewtest.ui.home.HomeFragment"
-        tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/navigation_recruitpost"
+        android:id="@+id/navigation_recruitpost_fragment"
         android:name="com.example.bottomnavigationviewtest.ui.post.PostFragment"
         tools:layout="@layout/fragment_post" >
         <action
@@ -18,16 +14,12 @@
             app:destination="@id/postUploadFragment" />
     </fragment>
     <fragment
-        android:id="@+id/navigation_matching"
+        android:id="@+id/navigation_matching_fragment"
         android:name="com.example.bottomnavigationviewtest.ui.matching.MatchingFragment"
-        tools:layout="@layout/fragment_matching" />
-    <fragment
-        android:id="@+id/navigation_chat"
-        android:name="com.example.bottomnavigationviewtest.ui.chat.ChatFragment"
-        tools:layout="@layout/fragment_chat" />
+        tools:layout="@layout/fragment_matching" />=
 
     <fragment
-        android:id="@+id/navigation_profile"
+        android:id="@+id/navigation_profile_fragment"
         android:name="com.example.bottomnavigationviewtest.ui.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile" >
         <action

@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_recruitpost, R.id.navigation_chat, R.id.navigation_matching, R.id.navigation_profile
+                R.id.navigation_recruitpost_button,R.id.navigation_matching_button, R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -52,20 +52,12 @@ class MainActivity : AppCompatActivity() {
 
         navView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.navigation_home  -> {
-                    navController.navigate(R.id.navigation_home, null, navOptions)
+                R.id.navigation_matching_button -> {
+                    navController.navigate(R.id.navigation_matching_button, null, navOptions)
                     true
                 }
-                R.id.navigation_recruitpost -> {
-                    navController.navigate(R.id.navigation_recruitpost, null, navOptions)
-                    true
-                }
-                R.id.navigation_chat -> {
-                    navController.navigate(R.id.navigation_chat, null, navOptions)
-                    true
-                }
-                R.id.navigation_matching -> {
-                    navController.navigate(R.id.navigation_matching, null, navOptions)
+                R.id.navigation_recruitpost_button -> {
+                    navController.navigate(R.id.navigation_recruitpost_button, null, navOptions)
                     true
                 }
                 R.id.navigation_profile -> {
@@ -78,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener {
-            navController.navigate(R.id.navigation_matching)
+            navController.navigate(R.id.navigation_matching_button)
         }
     }
 
