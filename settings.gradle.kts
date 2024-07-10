@@ -21,6 +21,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "bottomNavigationViewTest"
+rootProject.name = "Molzakgyo"
 include(":app")
  

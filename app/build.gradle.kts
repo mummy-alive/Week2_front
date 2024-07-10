@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.bottomnavigationviewtest"
+    namespace = "com.example.Molzakgyo"
     compileSdk = 34
 
     defaultConfig {
