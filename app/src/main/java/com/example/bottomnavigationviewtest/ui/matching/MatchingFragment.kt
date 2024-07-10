@@ -1,7 +1,6 @@
 package com.example.bottomnavigationviewtest.ui.matching
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,6 @@ import androidx.lifecycle.Observer
 import com.example.bottomnavigationviewtest.databinding.FragmentMatchingBinding
 import com.example.bottomnavigationviewtest.viewmodels.MatchingViewModel
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
-import com.yuyakaido.android.cardstackview.CardStackView
-import com.yuyakaido.android.cardstackview.Direction
 
 class MatchingFragment : Fragment() {
     private var _binding: FragmentMatchingBinding? = null
@@ -43,16 +40,16 @@ class MatchingFragment : Fragment() {
         if (email != null) {
             matchingViewModel.fetchProfiles(email)
         } else {
-            Log.d("no email check", "")
+            Toast.makeText(requireContext(), "이메일이 없습니다. 다시 로그인 해주세요.", Toast.LENGTH_SHORT).show()
         }
-            matchingViewModel.profiles.observe(viewLifecycleOwner, Observer { profiles ->
-                if (profiles != null) {
-                    adapter.updateProfiles(profiles)
-                } else {
-                    Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
-                }
-            })
 
+        matchingViewModel.profiles.observe(viewLifecycleOwner, Observer { profiles ->
+            if (profiles != null && profiles.isNotEmpty()) {
+                adapter.updateProfiles(profiles)
+            } else {
+                Toast.makeText(requireContext(), "프로필을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onDestroyView() {

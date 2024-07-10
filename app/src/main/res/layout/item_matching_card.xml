@@ -8,118 +8,117 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
+        <!-- 프로필 이미지 -->
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="60dp"
-            android:layout_marginEnd="100dp"
+            android:layout_marginTop="100dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_dashboard_black_24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- MBTI 텍스트 -->
         <TextView
             android:id="@+id/text_mbti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="50dp"
             android:text="mbti"
             android:textColor="#000000"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@id/text_Interest"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileImage" />
 
+        <!-- 관심사 텍스트 -->
         <TextView
             android:id="@+id/text_Interest"
-            android:layout_width="322dp"
-            android:layout_height="100dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:layout_marginStart="15dp"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
             android:text="관심사"
             android:textColor="#000000"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@id/tech_tag_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_mbti" />
+            app:layout_constraintTop_toBottomOf="@id/text_mbti"
+            app:layout_constraintWidth_percent="0.9" />
 
-        <LinearLayout
-            android:id="@+id/tech_tag_layout"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="150dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"></LinearLayout>
-
-        <TextView
-            android:id="@+id/text_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="class"
-            tools:layout_editor_absoluteX="181dp"
-            tools:layout_editor_absoluteY="248dp" />
-
+        <!-- 기술스택 텍스트 -->
         <TextView
             android:id="@+id/text_tech"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="기술스택"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/text_Interest" />
 
+        <!-- 기술 태그 레이아웃 -->
+        <LinearLayout
+            android:id="@+id/tech_tag_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_tech"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <!-- 클래스 텍스트 -->
         <TextView
-            android:id="@+id/text_email"
+            android:id="@+id/text_class"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
-            tools:layout_editor_absoluteX="155dp"
-            tools:layout_editor_absoluteY="418dp" />
+            android:layout_marginTop="10dp"
+            android:text="class"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tech_tag_layout" />
+
+        <!-- 이메일 텍스트 -->
+
+        <!-- 오른쪽 오버레이 이미지 -->
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/right_overlay"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/btn_plus" />
+        </FrameLayout>
+
+        <!-- 왼쪽 오버레이 이미지 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/left_overlay"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/btn_minus" />
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <ImageView
-            android:id="@+id/right_overlay"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/btn_plus" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <ImageView
-            android:id="@+id/left_overlay"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:src="@android:drawable/btn_minus" />
-    </FrameLayout>
-
 </androidx.cardview.widget.CardView>
+
